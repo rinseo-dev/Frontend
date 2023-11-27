@@ -25,7 +25,7 @@
         form태그내에 submit버튼 클릭시<br>
         해당 form안에 사용자가 작성한 값들을 서버로 전송하여 요청하는 역할 수행<br><br>
     
-        form action="" method=""<br><br>
+        form action="서버로전송할경로" method="get | post"<br><br>
 
         * action속성 : 해당 form에 사용자가 입력한 값을 전달하면서 요청할 서버의 경로 제시
         * method속성 : 요청 전송 방식을 지정하는 속성( get:기본값 | post )
@@ -41,7 +41,10 @@
         검색어 : <input name="keyword"><!--type 기본값 text(생략시 type="text" )-->
         <input type="submit">
     </form>
-    <!-- keyword박스에 값을 입력하면, ~search.jsp?keyword=사용자가 넣은 값 => jsp페이지로 넘겨줌 -->
+    <!--
+        keyword박스에 값을 입력하면,
+        ~search.jsp?keyword=사용자가 넣은 값 => jsp페이지로 넘겨줌
+    -->
 
     <h3>fieldset : 그룹을 묶는 태그(기본적인 테두리가 있음)</h3>
     <h4>legend : 해당 그룹의 제목을 붙이는 태그</h4>
@@ -253,6 +256,25 @@
             <option value="gb">김밥</option>
             <option value="etc">기타</option>
         </select>
+        <br><br>
+        수강신청 : 
+        <select>
+            <optgroup label="공과대학"> <!--label은 큰 분류, 하위 선택지가 option-->
+                <option value="archi">건축공학과</option>
+                <option value="mechanic">기계공학과</option>
+                <option value="indust">산업공학과</option>
+                <option value="elect">전기전자공학과</option>
+                <option value="computer">컴퓨터공학과</option>
+                <option value="chemical">화학공학과</option>
+            </optgroup>
+            <optgroup label="인문대학">
+                <option value="history">사학과</option>
+                <option value="lang">어문학과</option>
+                <option value="philo">철학과</option>
+            </optgroup>
+        </select>
+
+
 
         <h3>html5에서 새로 추가된 기능 datalist</h3>
         <p>
