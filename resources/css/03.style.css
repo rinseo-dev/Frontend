@@ -55,29 +55,34 @@ div[class*=i]{ /*class 속성에 'i'가 포함되어 있다면*/
     background-color: rgb(142, 202, 205);
 }
 
-/* a b : a요소의 후손(모든 하위요소)들 중에서 b요소만 선택 */
+/* a b : a요소의 후손(모든 하위요소)들 중에서 b요소 모두 선택 */
+/* #test>li는 불가능. li는 후손이기 때문에 자손선택자'>'를 이용하면 선택 불가 */
 #test1 li {
     color : red;
 }
+/* div(id=test1)의 후손은 h4, ul, li / 자손은 h4, ul인 상태 */
 
 /*==================== 3. 동위 선택자 ====================*/
+/* a요소 뒤에 있는 b요소 '하나만'선택 -> div2 */
 #test2+div{background-color: yellowgreen;}
 
-#test2+ul{background-color: bisque;}/* 선택 안됨. 바로 뒤에 나오는 요소가 아니므로 */
+/* 선택 안됨. ul은 바로 뒤에 나오는 요소가 아니므로 */
+#test2+ul{background-color: bisque;}
 
 /* a요소 뒤에 있는 "모든" b요소 선택 */
 #test2~ul{background-color: bisque;}/* test2하위에 모든 ul */
 #test2~div {color: rgb(255, 0, 157);}
 
 /*==================== 4. 반응 선택자 ====================*/
+/* 사용자의 움직임에 따라 반응하는 선택자 */
 .area{
     background-color: greenyellow;
     width : 100px;
     height : 100px;
-    cursor: pointer;
+    cursor: pointer; /*마우스 포인터를 손가락 모양으로*/
 }
 
-#active-test:active{
+#active-test:active{ /* click했을 때 변화하게 */
     background-color: blueviolet;
     color: white;
 }
@@ -92,11 +97,12 @@ input[type=checkbox]:checked{ /* checkbox가 선택된다면 */
     width:30px;
     height:30px;
 }
-input[type=checkbox]:checked+label{ /* checkbox바로 뒤 label */
-    font-size: 30px;
+
+input[type=checkbox]:checked+label{ /* checkbox 동등 레벨의 바로 뒤 label */
+    font-size: 30px; 
 }
 
-input[name^=user]:focus{ /* user로 시작하는 것에 focus가 맞춰지면 */
+input[name^=user]:focus{ /* user로 시작하는 것에 focus가 맞춰지면 - 클릭이나 탭으로 넘어갔을 때 */
     background-color: pink;
 }
 

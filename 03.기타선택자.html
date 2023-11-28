@@ -46,7 +46,7 @@
     <div id="test1">
         <h4>div의 자손이면서 후손입니다</h4>
         <h4>div의 자손이면서 후손입니다</h4>
-        <ul>
+        <ul>div의 자손이면서 후손입니다
             <li>ul의 자손이면서 div의 후손입니다</li>
             <li>ul의 자손이면서 div의 후손입니다</li>
         </ul>
@@ -106,6 +106,7 @@
         input박스의 name과 label의 for로 연결
         label안에 있는 요소를 클릭하면 input박스에 적용됨
     -->
+    <!-- label없이 사과, 바나나 글자만 들어가면 체크박스를 클릭해야만 체크가 됨 -->
     <input type="checkbox" id="apple" name="apple">
     <label for="apple">사과</label>
     
@@ -121,7 +122,7 @@
     비밀번호 : <input type="password" name="userPwd"><!-- disabled넣으면 선택불가능하게 가능-->
 
     <pre>
-        3) 활성화(enabled) 되어있는 요소들 선택
+        3) 활성화(enabled) 되어있는 요소들 선택 - default값
             선택자:enabled { 스타일속성: 값; }
         4) 비성화(disabled) 되어있는 요소들 선택
             선택자:disabled { 스타일속성: 값; }
@@ -129,5 +130,6 @@
 
     <button>클릭가능</button>
     <button disabled>클릭불가능</button>
+    <!-- 활성화가 되어 있는 곳에는 violet, 비활성화에는 rgb(94, 226, 182) -->
 </body>
 </html>
