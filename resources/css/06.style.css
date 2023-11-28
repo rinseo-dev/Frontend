@@ -17,6 +17,8 @@
 #tt3{text-transform: capitalize;}
 
 .shadow{font-size:50px; font-weight:900;}
+/* text-shadow: 가로거리(x), 세로거리(y) [번짐정도] [그림자색상];
+    ','를 사용해서 shadow효과를 여러개 줄 수 있음 */
 #ts1{color:orangered;
      text-shadow: 5px 5px;
      text-shadow: -5px -5px 5px yellow;
@@ -28,4 +30,25 @@
     color:white;
     text-shadow:0 0 10px black;
     text-shadow: 0 0 10px rgb(124, 231, 150);
+}
+
+#ts3{
+    text-shadow: 0 0 4px gray,
+                 0 -5px 4px yellow,
+                 0 -10px 8px orange,
+                 0 -15px 15px orangered,
+                 0 -20px 20px red;
+
+}
+
+#justify{
+    text-align: justify;
+}
+
+#right{
+    text-align: right;
+}
+
+#center{
+    text-align:center;
 }

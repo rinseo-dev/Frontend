@@ -49,6 +49,8 @@
         선택자{
             text-shadow: 가로거리(x), 세로거리(y) [번짐정도] [그림자색상];
         }
+
+        ** ','를 사용해서 shadow효과를 여러개 줄 수 있음
     </pre>
 
     <!-- div>span.shadow#ts${HTML}*3 으로 생성 -->
@@ -58,5 +60,40 @@
         <span class="shadow" id="ts3">HTML</span><br><br>
     </div>
 
+    <hr>
+
+    <h3>text-align : 텍스트를 정렬할 때 사용</h3>
+    <pre>
+        선택자 {
+            text-align : left(기본값) | justify(폭에 맞게 양쪽 정렬) | right | center;
+        }
+    </pre>
+
+    <!-- (h4+p>lorem*2)*4로 생성 -->
+    <h4>왼쪽 정렬(기본값)</h4>
+    <p><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, illum? Blanditiis minus, consequuntur fugit quae distinctio porro assumenda explicabo laudantium amet dicta expedita ducimus commodi atque quod eligendi! Tempore, tempora.</span><span>Id commodi nam modi, ex explicabo, praesentium magni ad accusantium rerum quam, adipisci error eos a consectetur! Alias animi ullam officia exercitationem est eligendi dolorem. Quos necessitatibus dignissimos voluptatibus modi.</span></p>
+    <h4>양쪽 정렬(justify)</h4>
+    <p id="justify"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, illum? Blanditiis minus, consequuntur fugit quae distinctio porro assumenda explicabo laudantium amet dicta expedita ducimus commodi atque quod eligendi! Tempore, tempora.</span><span>Id commodi nam modi, ex explicabo, praesentium magni ad accusantium rerum quam, adipisci error eos a consectetur! Alias animi ullam officia exercitationem est eligendi dolorem. Quos necessitatibus dignissimos voluptatibus modi.</span></p>
+    <h4>오른쪽 정렬</h4>
+    <p id="right"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, illum? Blanditiis minus, consequuntur fugit quae distinctio porro assumenda explicabo laudantium amet dicta expedita ducimus commodi atque quod eligendi! Tempore, tempora.</span><span>Id commodi nam modi, ex explicabo, praesentium magni ad accusantium rerum quam, adipisci error eos a consectetur! Alias animi ullam officia exercitationem est eligendi dolorem. Quos necessitatibus dignissimos voluptatibus modi.</span></p>
+    <h4>가운데 정렬</h4>
+    <p id="center"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi, illum? Blanditiis minus, consequuntur fugit quae distinctio porro assumenda explicabo laudantium amet dicta expedita ducimus commodi atque quod eligendi! Tempore, tempora.</span><span>Id commodi nam modi, ex explicabo, praesentium magni ad accusantium rerum quam, adipisci error eos a consectetur! Alias animi ullam officia exercitationem est eligendi dolorem. Quos necessitatibus dignissimos voluptatibus modi.</span></p>
+
+    <hr>
+    <h3>line-height : 줄간격 조절할 때 사용 </h3>
+    <pre>
+        선택자 {
+            line-height:normal | px | em | %
+          }
+    </pre>
+
+    <h4>px 고정단위 간격</h4>
+    <p style="line-height: 30px;"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias cupiditate necessitatibus facere vero rerum aspernatur unde? Unde ratione voluptates voluptatibus alias consequuntur accusantium, voluptate quaerat asperiores eius, minima saepe repudiandae.</span><span>Atque facere debitis expedita voluptatibus at laboriosam voluptates repellendus blanditiis cupiditate quibusdam provident, esse quisquam? Modi enim consequatur repellat voluptas similique. Facere suscipit veniam aliquid voluptatum ab, voluptatem non dolorem.</span><span>Est quam, voluptas explicabo, voluptatem, ab dolores asperiores maxime omnis qui accusamus odio eveniet. Hic ipsum dicta nesciunt ratione. Enim quod quam cum corrupti aspernatur cupiditate incidunt neque quia aliquid!</span></p>
+    
+    <h4>em 가변단위 간격</h4>
+    <p style="line-height: 3em;"><span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex, ipsum? Totam maxime magnam consequuntur eveniet nesciunt laborum aliquam, assumenda dolores. Sapiente temporibus dolorum laboriosam repellendus aperiam aut illum? Repudiandae, reprehenderit.</span><span>Animi aspernatur in minima non accusantium? Mollitia dolor cupiditate facilis corrupti voluptates vero nam voluptatum provident accusamus atque recusandae sunt, ullam amet magni beatae quod, pariatur optio, error molestias debitis.</span><span>Quasi dolore quae repudiandae, ratione qui quaerat voluptatum nihil modi natus cupiditate similique odio, delectus corrupti minima asperiores adipisci. Vel nemo libero culpa officiis explicabo itaque facilis obcaecati inventore eaque.</span></p>
+    
+    <h4>% 배율 단위 간격</h4>
+    <p style="line-height: 200%;"><span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat magni, dolorem ut veritatis, qui earum cumque, minima modi neque quisquam tempore! Pariatur harum porro totam odio esse quod saepe veritatis.</span><span>Architecto voluptatibus itaque minima officia provident vel ipsum placeat iusto, quo non unde, beatae assumenda aliquam fuga in ut quasi reiciendis praesentium, officiis porro laborum est repudiandae! Atque, dicta quo?</span><span>Fugit laudantium eos voluptate, quibusdam reiciendis odit rerum sequi quam odio, in eius! Ipsa odit reiciendis consectetur excepturi quo, nihil aperiam. Sit optio, dolorem dolorum ex similique libero aliquam! Delectus!</span></p>
 </body>
 </html>

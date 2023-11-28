@@ -1,0 +1,51 @@
+body{
+    background-color: rgb(196, 253, 255);
+    background-color: rgba(196, 253, 255, 0.3);
+}
+
+#div-bg{
+    background-color: white;
+    color:white;
+    padding:20px;
+    border:10px solid blueviolet;
+    width:50%; /*내용만 50%*/
+}
+
+.div-test{
+    margin:30px;
+    background-color: yellowgreen;
+    border:10px dashed;
+    padding:20px;
+}
+
+#div1{background-clip: border-box;}
+#div2{background-clip: padding-box;}
+#div3{background-clip: content-box;}
+
+#bg-img{
+    border: 1px solid;
+    width:70%;
+    height:800px;
+
+    background-image: url(../../../HTML5/resources/img/img3.jpg);
+    background-repeat:no-repeat;
+    /* background-repeat:repeat-x; */
+    /* background-repeat:repeat-y; */
+    background-size:auto;
+    background-size:contain; /* 해당 요소안에 이미지가 원본 사이즈로 모두 보이게 */
+    background-size:cover; /* 해당 요소 안에 이미지가 가득 차게 - 사이즈 넘어서면 늘여서 표현 */
+    background-size: 200px; /*가로길이 정의 ( 세로는 원래 이미지 비율에 맞춰짐) */
+    background-size: 200px 300px; /* 가로px 세로px 지정*/
+    background-size: 30%; /*창 사이즈 대비 % 크기*/
+    background-size: 50% 50%; /*이렇게 하니까 창크기가 끝까지 줄여지는뎅..*/
+    background-size: auto; /*원래사이즈*/
+
+    /*사진 위치*/
+    background-position: left top; /*기본값*/
+    background-position: center bottom;
+    background-position: center center;
+    background-position: 20% 30%; /*50%는 가운데*/
+    
+    background-attachment: scroll; /*기본값 - 안에 스크롤 생기나?*/
+    background-attachment: fixed; /*현 위치에 고정됨. 스크롤 내려도 그 자리 그대로라 가려짐*/
+}
