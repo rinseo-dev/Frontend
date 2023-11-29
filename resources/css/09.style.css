@@ -48,7 +48,7 @@ div{
 
 #test9{
     border-style:solid;
-    /* border-radius:20px; */
+    /* border-radius:20px; */ /*전체 각 둥글게*/
     border-top-left-radius:50px;
     border-bottom-right-radius: 50px;
     background-color: aquamarine;
