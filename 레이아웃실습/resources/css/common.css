@@ -1,0 +1,9 @@
+/*import로 폰트를 가져오면 style에 넣어줘야함 Black Han Sans*/
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+*{
+    color:black; 
+    font-family:"Noto Sans KR";
+    margin:0 auto;
+}
+a{text-decoration: none;}

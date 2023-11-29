@@ -1,0 +1,41 @@
+#wrapper{
+    width:1000px;
+    margin:0 auto;
+}
+
+/* 헤더 */
+header{
+    width:1000px; /*100%해도 됨. 같은 사이즈니까*/
+    height:120px;
+    background-color: blue;
+}
+
+.header-text{
+    font-size:40px;
+    color:white;
+    text-align:center;
+    line-height: 120px; /*header의 높이와 똑같이 주면 세로 가운데 정렬됨*/
+}
+
+/*본문*/
+.content{
+    float:left;
+    width:700px;
+    height:500px;
+    background-color: bisque;
+}
+
+.right-side{
+    /*.content에서 float:left를 줘서 나란히 옆에 쌓..여야했는데 왜 안됨*/
+    float:left; /*right로 해서 300px붙여도 됨*/
+    width:300px;
+    height:500px;
+    background-color: aquamarine;
+}
+
+/*푸터*/
+footer{
+    clear:both;
+    height:120px;
+    background-color: lightgreen;
+}

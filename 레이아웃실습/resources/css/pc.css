@@ -1,0 +1,55 @@
+/*전체*/
+body{
+    width:1000px;
+    background: azure;
+}
+
+/*헤더*/
+header{
+    height:300px;
+}
+
+#logo{
+    float:left;
+}
+
+#login{
+    float:right;
+    margin-top:6px;
+}
+
+#titleImg{
+    clear:both;
+    height:262px; /*nav 사이에 빈칸 없애려고 2px늘려줌*/
+    width:100%;
+}
+
+/*nav*/
+.navi{
+    width:100%;
+    height:60px;
+    background-color:lightskyblue;
+}
+
+.navi>a{
+    display:inline-block;
+    width:246px;
+    line-height: 60px;
+    text-align: center;
+}/*navi 클래스 바로 아래 a태그*/
+
+.navi>a:hover{
+    color:white;
+}
+
+.navi>a:active{
+    color:blue;
+}
+
+aside{
+    width:100%;
+    display:flex;
+
+    justify-content: center;
+}
+aside>img{width:333px; border-radius: 5%;}
