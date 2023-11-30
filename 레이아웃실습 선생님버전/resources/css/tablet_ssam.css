@@ -1,0 +1,35 @@
+body {
+    width: 100%;
+  }
+  /* header */
+  header {
+    height: 330px;
+    width: 100%;
+  }
+  #logo {display: block; margin-bottom: 5px;}
+  #login {display: block; margin-left: 35%; margin-bottom: 5px;}
+  #titleImg {height: 260px; width: 100%;}
+  
+  /* nav */
+  .navi {background-color: rgb(6, 54, 56); height: 60px;}
+  .navi a {
+    display: inline-block; 
+    height: 60px; 
+    width: 24%; 
+    text-align: center; 
+    line-height: 60px;
+    color: white;
+  }
+  /* 본문 */
+  section {margin: 50px;}
+  section h4 {color: darkcyan; margin: 10px 0;}
+  /* side */
+  aside {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+  }
+  /* footer */
+  footer {margin-top: 10px;  background-color: rgb(66, 66, 248);}
+  footer>p {color: white; padding: 5px 15px; font-size: small;}

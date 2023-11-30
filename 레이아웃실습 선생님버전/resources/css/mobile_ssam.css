@@ -1,0 +1,20 @@
+body {width: 100%;}
+/* 헤더 */
+header{text-align: center; margin-bottom: 10px;}
+#titleImg {display: none;}
+
+/* nav */
+.navi {background-color: rgb(6, 54, 56); height: 200px;}
+.navi a {display: block; text-align: center; 
+  color: white; line-height: 50px; border-bottom: 1px solid azure;}
+
+/* 본문 */
+section {margin: 50px;}
+section h4 {color: darkcyan; margin: 10px 0;}
+
+/* side */
+aside img {display: block; height: 300px; margin-bottom: 10px;}
+
+/* footer */ 
+footer {margin-top: 10px;  background-color: rgb(66, 66, 248);}
+footer>p {color: white; padding: 5px 15px; font-size: small;}

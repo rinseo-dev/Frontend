@@ -7,3 +7,8 @@
     margin:0 auto;
 }
 a{text-decoration: none;}
+
+/* 쌤 코드 추가 */
+body{
+  background: azure;
+}
