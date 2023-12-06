@@ -29,6 +29,7 @@
 
     <h3>3) document.write("화면상에 출력할 문구");</h3>
     <button onclick="docWrite();">화면에 출력</button>
+    <!--Js에서는 docWrite()형태를 함수라고 함. ()괄호 안에 매개변수 넣을 수 있음-->
 
     <script>
         function docWrite(){
@@ -94,12 +95,12 @@
             console.log(divE1.innerText); // innerText:요소의 content영역 안의 text만 포함
 
             //해당 요소의 속성값 변경도 가능 : 속성에 접근한 후 대입을 통해서 변경
-            // divE1.innerHTML = "<b>innerHTML로 속성값 변경함</b>"
-            // divE1.style.backgroundColor="red";
+            divE1.innerHTML = "<b>innerHTML로 속성값 변경함</b>"
+            divE1.style.backgroundColor="red";
             // 배경 색 red로 바뀌고, 글 내용도 'innerHTML로 속성값 변경함'으로 바뀜
 
-            divE1.innerText = "<h2>innerText로 속성값 변경함</h2>"
-            divE1.style.color="red";
+            // divE1.innerText = "<h2>innerText로 속성값 변경함</h2>"
+            // divE1.style.color="red";
             // innerText를 사용하면 내용에 작성한 태그가 적용되지 않고 문자 그대로 출력됨
 
             // innerHTML은 태그를 해석하여 태그 형태로 보여주고
