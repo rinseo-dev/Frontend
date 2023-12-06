@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07.함수</title>
+    <style>
+        .area{
+            width: 400px;
+            border : 1px solid;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>함수</h1>
+
+    <h3>* 선언적 함수</h3>
+    <pre>
+        function 함수명([매개변수, 매개변수, ...]){
+            함수호출시 실행할 코드;
+            [return 결과값;]
+        }
+    </pre>
+
+    <div id="area1" class="area"></div>
+    <button onclick="test1();">실행확인</button>
+
+    <script>
+        function test1(){
+            document.getElementById('area1').innerHTML='test1() 함수 실행';
+        }
+    </script>
+
+    <h3>* 익명 함수(이름이 없는 함수)</h3>
+    <pre>
+        변수|속성 = function([매개변수, 매개변수, ...]){
+            실행할 코드;
+            [return 결과값;]
+        }
+        
+        - 특정 변수나 속성에 대입되는 함수 제시시 주로 사용됨
+          (주로 이벤트 핸들러 작성시 사용)
+    </pre>
+
+    <div id="area2" class="area"></div>
+    <button id='btn'>실행확인</button>
+
+    <script>
+        const btn = document.getElementById('btn');
+        btn.onclick = function(){
+            document.getElementById('area2').innerHTML = '이벤트핸들러를 통해 실행됨';
+        }
+    </script>
+
+    <h3>* 화살표 함수(Arrow function)</h3>
+    <pre>
+        - 본문에 리턴만 있을 때,
+          변수 = ([매개변수, 매개변수, ...]) => 리턴값;
+        - 본문에 내용이 여러줄 일 때
+          변수 = ([매개변수, 매개변수, ...]) => { **한 줄 이상일때는 중괄호로 묶어서 작성
+            실행 코드;
+            실행 코드;
+            ...
+            [return 결과값;]
+          }
+        - 익명함수를 간단히 작성하는 방법(ES6(ES2015)에 추가)
+    </pre>
+
+    <div id="area3" class="area"></div>
+    <button id="btn2">실행확인</button>
+
+    <script>
+        // 익명함수여서 function 안들어감
+        const area3 = document.getElementById('area3');
+        const btn2 = document.getElementById('btn2');
+        const value = '홍길동';
+        const age = 25;
+        /*
+        원래 함수 식
+        btn2.onclick = function(){
+            area3.innerHTML += '화살표 함수가 실행됨<br>';
+        }
+        */
+
+        // 화살표 함수로 고침(function생략)
+        // 매개변수가 없는 함수 : 반드시 ()괄호가 있어야 함
+        btn2.onclick = () => area3.innerHTML += '매개변수가 없는 화살표 함수 실행<br>';
+        // btn2.onclick = () => document.getElementById('area3) 이렇게도 됨. area3을 찾아놨으므로 사용
+
+        /*
+        btn2.onclick = function(value){
+            area3.innerHTML = `${value}님 환영합니다`;
+        }
+        */
+
+        //화살표함수로 바꿈 - function, 괄호 생략 단, 매개변수는 필요하면 넣어줘야함
+        // 매개변수가 1개인 함수 : 괄호 생략 가능
+        // btn2.onclick = value => area3.innerHTML += `${value}화살표 함수가 실행<br>`;
+        // 위 구문에서 value값을 표현하면 object로 출력되기때문에 바꿈
+        btn2.onclick = value => area3.innerHTML += '매개변수가 1개인 화살표 함수 실행';
+
+        /*
+            btn2.onclick = function(value,age){
+                area3.innerHTML = ``
+            }
+        */
+       // 화살표 함수로 고침 - function 생략
+       // 매개변수가 2개 이상인 함수 : 반드시 괄호가 있어야 함
+        // btn2.onclick = (value,age) => area3.innerHTML += `${value},${age} 화살표 함수`;
+        // 위 구문에서 value, age가 넘어오는 값이 object로 표현돼서 아래처럼 바뀜
+        btn2.onclick = (value, age) => area3.innerHTML += '매개변수가 2개 이상인 화살표 함수 실행';
+
+        // 본문 내용이 여러줄 일 때
+        const result = () => {
+            const a = 1;
+            const b = 2;
+            return a+b; //result 에 3이 들어옴
+        }
+    </script>
+
+    <h3>* 즉시 실행 함수(iife(Immediately Invoked Function Expression))</h3>
+    <pre>
+        - 정의하면서 즉시 실행되는 함수
+        - 단 한번만 호출됨
+          ([변수] = function([매개변수, 매개변수, ...]){
+            실행될 코드;
+          }) (인자,...);
+    </pre>
+
+    <script>
+        //window.onload = function(){ }
+
+        (function() {
+            console.log('iife 실행');
+        })(); // function에 넣어주면 즉시 실행
+
+        (function(name){
+            console.log(`Hi, ${name}`);
+            const k = 999;
+            console.log(k);
+        }) ('애드 인 에듀'); // <- name에 해당하는 인자값을 여기 입력
+
+        (function(name){
+            console.log(`Hi, ${name}`);
+        }) ('애드 인 에듀');
+
+        //화살표 함수로 바꿈
+        //  () => console.log('애드 인 에듀'); 실패
+        ((name) => console.log(`Hi, ${name}`))('애드 인 에듀-화살표함수');
+
+        // 매개변수가 1개일 때 생략 가능
+        (name => console.log(`Hi, ${name}`))('애드 인 에듀-괄호생략');
+    </script>
+
+    <hr>
+
+    <h2>함수의 매개변수</h2>
+
+    <div id="area4" class="area"></div>
+    <button onclick="test2('안녕');">문자열 매개변수</button>
+    <button onclick="test2(10);">숫자 매개변수</button>
+    <button onclick="test2([1,2,3]);">배열 매개변수</button>
+    <button onclick="test2(true);">논리 매개변수</button>
+    
+    <br>
+    <button onclick='test2(prompt("이름 입력"));'>이름 입력</button>
+    <!--매개변수의 개수보다 더 많이 전달 가능(오류없음). 단, 초과 전달된 값은 무시됨-->
+
+    <button onclick='test2("안녕","반가워");'>여러개 매개변수</button>
+    <!--매개변수의 개수를 더 적게 전달 가능(오류없음). 단, undefined-->
+
+    <button onclick="test2();">매개변수 없음</button> <!--undefined-->
+
+    <script>
+        // 매개변수 제시시 자료형 지정X, 선언 구문X => 변수명
+        function test2(value){ // 매개변수에 자료(const 등) 지정하지 않음
+            document.getElementById('area4').innerHTML = value;
+
+        }
+    </script>
+</body>
+</html>
