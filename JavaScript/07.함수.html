@@ -79,7 +79,7 @@
         /*
         원래 함수 식
         btn2.onclick = function(){
-            area3.innerHTML += '화살표 함수가 실행됨<br>';
+            area3.innerHTML += '매개변수가 없는 화살표 함수 실행<br>';
         }
         */
 
@@ -87,6 +87,9 @@
         // 매개변수가 없는 함수 : 반드시 ()괄호가 있어야 함
         btn2.onclick = () => area3.innerHTML += '매개변수가 없는 화살표 함수 실행<br>';
         // btn2.onclick = () => document.getElementById('area3) 이렇게도 됨. area3을 찾아놨으므로 사용
+
+        // btn2.onclick을 가져오고 function은 없애는데 매개변수도 없으므로 ()만 가져옴
+        // => 화살표를 넣어주고 결과값으로 실행할 구문 area3.innerHTML += '문장';을 넣어주면 화살표함수
 
         /*
         btn2.onclick = function(value){
@@ -110,8 +113,17 @@
         // btn2.onclick = (value,age) => area3.innerHTML += `${value},${age} 화살표 함수`;
         // 위 구문에서 value, age가 넘어오는 값이 object로 표현돼서 아래처럼 바뀜
         btn2.onclick = (value, age) => area3.innerHTML += '매개변수가 2개 이상인 화살표 함수 실행';
+        // 실행할 본문 내용이 1줄 일 때 화살표 함수도 1줄로 써줌.
 
-        // 본문 내용이 여러줄 일 때
+        /*
+        매개변수 2개 이상인 함수에 실행 본문이 2줄 이상인 경우 이런식
+        btn2.onclick = (value, age) => {
+            area3.innerHTML += '실행문장1';
+            area3.innerHTML += '실행문장2';
+        }
+        */
+
+        // 본문 내용이 여러줄 일 때는 {}중괄호를 사용해서 묶어줌
         const result = () => {
             const a = 1;
             const b = 2;
@@ -129,14 +141,22 @@
     </pre>
 
     <script>
-        //window.onload = function(){ }
+        //window.onload = function(){ } 호출하지 않아도 실행됐던 window.onload와 같은 결과물
 
+
+        /*
+        즉시실행 함수는 함수 겉에  ()괄호를 싸주면 되나봄..?
+
+        (function() {
+            console.log('iife 실행');
+        })는 즉시 실행되기 때문에 매개변수를 뒤에 ();따로 붙여줘야 함
+        */
         (function() {
             console.log('iife 실행');
         })(); // function에 넣어주면 즉시 실행
 
-        (function(name){
-            console.log(`Hi, ${name}`);
+        (function(name){ // <- 인자값으로 넣은 '애드 인 에듀'가 name에 적용됨
+            console.log(`Hi, ${name}`); // 그래서 ${name}에 값이 '애드 인 에듀'가 들어옴
             const k = 999;
             console.log(k);
         }) ('애드 인 에듀'); // <- name에 해당하는 인자값을 여기 입력
@@ -147,10 +167,21 @@
 
         //화살표 함수로 바꿈
         //  () => console.log('애드 인 에듀'); 실패
+
+        /*
+            한줄짜리는 옆으로 쭉 쓸 수 있고, function는 없고 매개변수는 1개라 괄호 생략 가능
+            매개변수 => 
+        */
         ((name) => console.log(`Hi, ${name}`))('애드 인 에듀-화살표함수');
 
         // 매개변수가 1개일 때 생략 가능
         (name => console.log(`Hi, ${name}`))('애드 인 에듀-괄호생략');
+
+        (name => {
+            console.log(`Hi, ${name}`);
+            const k = 999;
+            console.log(k);
+        })('애드 인 에듀-실행문 여러줄');
     </script>
 
     <hr>
@@ -176,6 +207,12 @@
         // 매개변수 제시시 자료형 지정X, 선언 구문X => 변수명
         function test2(value){ // 매개변수에 자료(const 등) 지정하지 않음
             document.getElementById('area4').innerHTML = value;
+            /*
+                value에 test2('값')의 값이 들어가게 됨.
+                안녕, 10, [1,2,3], true가 들어올 수 있음.
+
+                value는 1개 값인데 "안녕","반가워"같이 2개의 값이 들어오는 경우 뒤의 값은 무시됨
+            */
 
         }
     </script>

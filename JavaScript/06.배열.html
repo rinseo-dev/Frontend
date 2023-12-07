@@ -30,6 +30,7 @@
         function arrayTest1(){
             const arr = ['홍길동','서울',20, true, [1,2,3]];
             // 배열 안에 문자, 숫자, true/false, 배열 모두 넣어도 됨
+            // 배열 안에 배열은 2차원 배열로 보면됨
 
             console.log(arr);
             console.log(arr[3]);
@@ -81,6 +82,7 @@
             // 배열 선언과 동시에 초기화
             const arr4 = ['java','oracle','jsp'];
             const arr5 = new Array('홍길동','애드인에듀','신사임당');
+            // Js에서는 new Array안해도 됨
 
             console.log(arr4);
             console.log(arr5);
@@ -183,7 +185,7 @@
     <hr>
 
     <h4>4) 배열.sort</h4>
-    <p>배열에 담긴 값들을 정렬시켜주는 함수</p>
+    <p>배열에 담긴 값들을 정렬시켜주는 함수 **기본값: 오름차순</p>
 
     <div id="area5" class="area"></div>
     <button onclick="sortTest();">확인하기</button>
@@ -204,6 +206,7 @@
             area5.innerHTML += `원본 arr : ${arr}<br>`;
             area5.innerHTML += `원본 name : ${name}<br><br>`;
 
+            // 내림차순 :  sort+reverse 복합 사용
             area5.innerHTML += `arr(숫자) 내림차순 정렬 : ${arr.sort().reverse()}<br>`;
             area5.innerHTML += `name(이름) 내림차순 정렬 : ${name.sort().reverse()}<br>`;
         }
@@ -301,9 +304,10 @@
 
             // splice는 원본에 영향을 끼침
             // splice는 배열에서 결과를 제거만 함
-            // area8.innerHTML += `splice 결과 : ${arr.splice(2,2)}<br>`; // 출력 html5,css3
-            // area8.innerHTML += `splice 결과 : ${arr.splice(2,1,'spring')}<br>`; // java,jsp,spring,css3,javascript
+            // area8.innerHTML += `splice 결과 : ${arr.splice(2,2)}`; // 출력 html5,css3
+            // area8.innerHTML += `splice 결과 : ${arr.splice(2,1,'spring')}`; // java,jsp,spring,css3,javascript
             area8.innerHTML += `splice 결과 : ${arr.splice(2,1,'spring','oracle')}<br>`; // 하나 빼고 두개 넣기
+                                //인덱스 2번의 첫번째인 html5를 잘라내고 그 자리에 spring, oracle을 넣음
             area8.innerHTML += `원본 arr : ${arr}<br>`; // splice는 원본에 영향을 끼침
         }
     </script>
@@ -386,11 +390,15 @@
                     반환값은 void로 들어옴
             */
             area10.innerHTML += 'forEach : <br>';
-            arr.forEach(function(elem, index, arr){// 괄호안 '인자'값에 함수를 넣어줌. 자료형 없이 변수이름만
+            arr.forEach(function(elem, index, arr){ // (요소, 인덱스번호, 배열)
+                // 괄호안 '인자'값에 함수를 넣어줌. 요소에는 자료형 없이 변수이름만 사용
+                // arr 배열안에 있는걸 forEach로 각각 하나씩 다 돌게 됨
                 area10.innerHTML += `${index} = ${elem} / 원본배열 : ${arr}<br>`;
                 // area10.innerHTML += `${elem}, ${index}<br>`;
                 // 출력방식은 순서, 출력개수 등 원하는대로 가능.
                 // 단, function()안에는 값, 인덱스, 배열 순서를 지켜서 넣어야함
+                // index만 사용하고 싶을 때는 arr.forEach(function(index)로는 안됨.
+                // 첫 값은 무조건(parameter) 요소: string로 정해져있기 때문에 index는 첫번째 자리에 올 수 없음
                 // function(elem), function(elem. index)만 하는 건 가능.
             });
         }
@@ -414,21 +422,26 @@
     <button onclick="reduceTest()";>reduce</button>
 
     <script>
-        const area11 = document.querySelector('#area11');
+        const area11 = document.querySelector('#area11>ul');
         function mapTest(){
             const arr =[1,2,3,4,5]; // => [1, 4, 9, 16, 25] <- 이 배열은 arr2에 들어감
             const arr2 = arr.map(function(value, index, arr){
                 console.log(value,index,arr); // 배열에 있는 개수만큼 callback함수가 돌아감
                 // 함수는 return을 가짐
                 return value*value;
+
+            // arr.map에 콜백함수를 사용해서 값, 인덱스, 배열 중 value만 사용함(인덱스,배열은 안써줘도 됐음)
+            // arr2라는 배열에 value*value값이 들어가게 됨.
             });
             console.log(arr);
             console.log(arr2);
+
+            // document.querySelector("#area11").innerHTML = arr2; 이렇게 출력 가능
             
             const names = ['강남길','황정음','유재석'];
-            for(let i=0; i<names.length; i++){
-                area11.innerHTML += `<li>${names[i]}</li>`;
-            }
+            // for(let i=0; i<names.length; i++){
+            //     area11.innerHTML += `<li>${names[i]}</li>`;
+            // }
 
             // for(let i in names){
             //     area11.innerHTML += `<li>${names[i]}</li>`;
@@ -438,10 +451,22 @@
             //     area11.innerHTML += `<li>${elem}</li>`;
             // }
             
-            const nameList = names.map(function(name){
+            const nameList = names.map(function(name){ // name은 변수 이름이라 마음대로 지정한 것
                 return `<li>${name}</li>`; // 각 인덱스 값에 li태그까지 들어가있음
             });
             console.log(nameList);
+            /*
+            챗gpt 설명
+                `names.map` 메서드는 `names` 배열의 각 요소를 순회하면서
+                지정된 함수를 적용한 결과를 새로운 배열로 반환
+                콜백 함수를 사용하여 각 요소를 가지고 `<li>${name}</li>` 형식의 문자열로 변환
+                변환된 문자열들이 담긴 새로운 배열인 `nameList`를 생성
+
+                `map` 함수는 배열의 각 요소에 대해 주어진 함수를 호출하고,
+                그 함수가 반환하는 값을 가지고 새로운 배열을 생성합니다.
+                이 예제에서는 `names` 배열의 각 이름을 `<li>` 태그로 감싼 문자열로 변환하고,
+                    그 결과를 `nameList` 배열에 담고 있습니다
+            */
 
             // nameList.forEach(function(elem){
             //     area11.innerHTML += elem;
@@ -474,12 +499,22 @@
             console.log(arr);
 
             // arr배열의 값 중에서 30이하의 숫자 중 3의 배수만 가져오기
-            const result = arr.filter(function(elem){
+            const result = arr.filter(function(elem){ // 요소만 필요하므로 변수로 elem만들어줌
                 return elem <= 30 && elem % 3 == 0;
             });
 
-            area11.innerHTML += `30이하 숫자 중 3의 배수 : ${result}`;
+            area11.innerHTML += `30이하 숫자 중 3의 배수 : ${result}<br>`;
+            /*
+            챗gpt 설명
+            1. 먼저, 1부터 100까지의 숫자를 담은 배열 `arr`를 생성합니다.
+            2. `arr.filter` 메서드를 사용하여 배열의 각 요소를 순회하면서
+                조건을 만족하는 요소만 걸러내어 새로운 배열인 `result`를 생성합니다.
+            3. 콜백 함수는 주어진 조건에 해당하는 요소를 필터링하는 역할을 합니다.
+                여기서는 `elem <= 30 && elem % 3 == 0` 조건을 만족하는 숫자를 찾아냅니다.
+                즉, 30 이하이면서 3의 배수인 숫자를 찾습니다.
 
+            따라서 `result` 배열에는 1부터 30까지의 숫자 중 3의 배수인 숫자들이 들어가게 됩니다.
+            */
         }
 
         /*
@@ -487,11 +522,18 @@
                             currentIndex: number, array: number[])
                             => number): number
         */
-        function reduceTest(){ // 깃허브랑 비교해보기 맨 위에 area11도
+        function reduceTest(){ // reduce는 콜백함수+초기값으로 총 4개의 인자를 가짐
             const nums = [1,2,3,4,5,6,7,8,9,10];
             const sum = nums.reduce(function(pv,elem, index, arr){
                 return pv + elem;
             });
+            /*
+                return값이 없어서 처음에는 pv에 1이 들어옴. elem에는 2
+                pv+elem 으로 3 값이 pv에 들어감. elem은 순서상 3번 값이 들어오고
+                pv+elem으로 6이 pv에 들어감. elem에는 4가 들어오고
+                pv+elem값은 10이 됨. 이런 방식으로 돌게 됨
+                결과적으로 sum에는 55 값이 들어옴
+            */
 
             // let sum1 = 0;
             // for(let i=1; i<=10; i){
@@ -502,6 +544,7 @@
             area11.innerHTML += `1~10까지 합 =${sum}<br>`;
 
             const arr = [5,3,8,2,4,9,6,1,7];
+
             const max = arr.reduce(function(previous, current){
                 return previous > current ? previous : current;
             });
@@ -517,6 +560,30 @@
             */
             area11.innerHTML += `배열의 값 중 가장 큰 값 = ${max}<br>`;
         }
+        /*
+        챗gpt
+        `Array.prototype.reduce` 메서드는 콜백 함수가 4개의 인자를 받는 형태로 작동
+        1. **previousValue:** 이전 콜백 호출에서 반환된 값 또는 초기값(initialValue)입니다.
+        2. **currentValue:** 현재 배열 요소의 값입니다.
+        3. **currentIndex:** 현재 배열 요소의 인덱스입니다.
+        4. **array:** `reduce`를 호출한 배열 자체입니다.
+
+
+        콜백 함수의 내용은 현재까지의 누적 합을 구하는 로직입니다. 각 단계에서는 `previousValue`(`pv`)에 현재까지의 합이 누적되어 있고, `currentValue`(`elem`)에는 배열의 현재 요소가 전달됩니다. 그리고 이들을 더한 값이 다시 `previousValue`가 되어 다음 요소와 더해지는 식으로 배열을 순회하면서 누적 합을 계산합니다.
+
+        아래는 `reduce`를 사용하여 배열의 합을 계산하는 더 간단한 예제입니다:
+
+        ```javascript
+        const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const sum = nums.reduce(function(pv, elem) {
+        return pv + elem;
+        }, 0); // 초기값을 0으로 설정
+
+        console.log(sum); // 55
+        ```
+
+        이 예제에서 초기값 `0`은 `reduce`의 첫 번째 호출에서 `previousValue`에 전달되는 값입니다.
+        */
     </script>
 </body>
 </html>
