@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09.객체메소드</title>
+    <style>
+        .area{
+            border : 1px solid;
+            padding: 5px;
+        }
+        .small{height:200px;}
+        .big{height:400px;}
+    </style>
+</head>
+<body>
+    <h3>* 객체 메소드 속성</h3>
+    <p>
+      객체의 속성중 함수 자료형인 속성을 메소드라고 부름<br><br>
+
+      ** 키와 값에 function함수가 있는 경우를 객체메소드 라고 함
+    </p>
+    
+
+    <div id="area1" class="area small"></div>
+    <button onclick="test1();">실행확인</button>
+
+    <script>
+      function test1(){
+        const area1 = document.getElementById("area1");
+
+        let name = "jenny";
+
+        const dog = {
+          name : "똥개",
+          kind : "비글",
+          eat : function(food){ // <- food에 "사료"가 들어옴
+            area1.innerHTML += 'eat메소드가 호출됨<br>';
+            area1.innerHTML += `${food}<br>`;
+            // area1.innerHTML += `${kind}종류인 ${name}가 ${food}를 먹고 있어요`;
+                                  // 여기서는 변수 kind를 찾지만 객체를 정의하는 key인 kind뿐이라 오류
+            area1.innerHTML += `${name}가 ${food}를 먹고 있어요<br>`;
+                              // name은 변수 name=제니가 오고, function(food)에서 선언된 변수 food가 들어옴
+
+            area1.innerHTML += `${this.kind}종류인 ${this.name}가 ${food}를 먹고 있어요<br>`;
+            // 속성명인 kind를 사용하고 싶다면,
+            // 'this.'를 통해서 내가 가지고 있는 kind, name이라는 키를 가져옴 
+            // 'this.' 없이 ${kind},${name}으로 작성하면 function 바깥에서 값을 찾으려고 함
+            // kind는 없고, name은 jenny를 가져오게 됨
+          }
+        }
+        dog.eat("사료"); // function 바깥에 있는 name을 찾음
+        area1.innerHTML += `----------------------------------------<br>`;
+
+        let age = 25;
+
+        // ES5
+        const p1 = {
+          name : name, // <- jenny가 들어옴
+          age : age, // <- 25
+          fun1 : function(){
+            const result = this.name.toUpperCase(); // jenny를 대문자로 바꿈
+            area1.innerHTML += `${result}!!!<br>`;
+          },
+          setAge: function(vAge){ // vAge로 매개변수 받기
+            this.age = vAge;
+            area1.innerHTML += `나이 : ${this.age}<br>`;
+            // function(vAge) -> = vAge -> this.age -> : age로 값이 옮겨짐
+            // 결국 age 값이 바뀌게 되는 것
+            // p1.setAge(10);에서 function(vAge)값에 10이 들어감
+          }
+        }
+      
+        // 제일 아래로 옮김
+        // p1.fun1();
+        // p1.setAge(10);
+
+        // ES6(2015)
+        const p2 = {
+          name, // name = name이면 한번만 써줌
+          age, // age = age
+          fun1(){ // fun1 키값 : function(){} 메소드정의
+            const result = this.name.toUpperCase();
+            area1.innerHTML += `${result}!!!<br>`;
+          },
+          setAge(vAge){
+            this.age = vAge;
+            area1.innerHTML += `나이 : ${this.age}<br>`;
+          }
+        }
+
+        p1.fun1();
+        p1.setAge(10);
+        p2.fun1();
+        p2.setAge(30);
+      }
+    </script>
+
+    <h3>* in과 with 키워드</h3>
+    <p>
+      - in : 객체 내에 해당속성이 있는지 확인해주는 키워드(존재하면true, 아니면 false)<br>
+      - with : 객체의 속성에 접근할 때 객체명을 생략할 수 있는 키워드(코드 양을 줄여주는 키워드)
+    </p>
+
+    이름 : <input id="name"><br>
+    국어 : <input type="number" id="kor"><br>
+    수학 : <input type="number" id="math"><br>
+    영어 : <input type="number" id="eng"><br>
+    
+    <button onclick="test2();">실행확인</button>
+    <div id="area2" class="area big"></div>
+
+    <script>
+      function test2(){
+        const area2 = document.getElementById("area2");
+
+        const student = {
+          name : document.getElementById("name").value, // 사용자가 넣은 값이 name : 에 들어가게 됨
+          kor : Number(document.getElementById("kor").value),
+          math : Number(document.getElementById("math").value),
+          eng : Number(document.getElementById("eng").value),
+          getSum:function(){
+            return this.kor + this.math + this.eng
+          },
+          getAvg:function(){
+            // return this.getSum()/3;
+            // return Math.round(this.getSum()/3); // 반올림. 단 소수점자리 지정 안됨
+            // return Math.round(this.getSum()/3*10)/10; // 이렇게 하면 소수점 첫째자리까지 표현 가능
+            return (this.getSum()/3).toFixed(1); // 무조건 소수점 첫째자리까지 뽑기 toFixed()사용 
+          },
+          // toString을 정의하지 않으면 아래에서 ${student}를 화면에 출력할 때 [Object Object]만 나옴.
+          toString:function(){ // 여기도 객체를 호춣하면 toString이 호출됨
+            // return "안녕";
+            return `${this.name} / 국어 : ${this.kor} / 수학 : ${this.math} / 영어 : ${this.eng}`;
+          } 
+          // input으로 사용자가 넣은 값을 가져오면 String형으로 들어옴
+        }
+        // 객체 안에 속성이 있는지 확인하려는 것
+        area2.innerHTML += `${student}<br><br>`;
+        area2.innerHTML += `name속성이 있는가? ${"name" in student}<br>`;
+        area2.innerHTML += `age속성이 있는가? ${"age" in student}<br>`; // age는 없으므로 false
+        area2.innerHTML += `학생이름 : ${student.name}<br>`; // 이름 input box에 입력하고 버튼 누르면 실행됨
+        area2.innerHTML += `국어점수 : ${student.kor}<br>`;
+        area2.innerHTML += `수학점수 : ${student.math}<br>`;
+        area2.innerHTML += `영어점수 : ${student.eng}<br>`;
+
+        // area2.innerHTML += `총점 : ${student.kor+student.math+student.eng}<br>`; // 위에서 계산하게 바꿈
+        area2.innerHTML += `총점 : ${student.getSum()}<br>`;
+        area2.innerHTML += `평균 : ${student.getAvg()}<br>`;
+
+        with(student){
+        area2.innerHTML += `----------------------------------------<br>`;
+        area2.innerHTML += `학생이름 : ${student.name}<br>`;
+        area2.innerHTML += `국어점수 : ${student.kor}<br>`;
+        area2.innerHTML += `수학점수 : ${student.math}<br>`;
+        area2.innerHTML += `영어점수 : ${student.eng}<br>`;
+
+        area2.innerHTML += `총점 : ${student.getSum()}<br>`;
+        area2.innerHTML += `평균 : ${student.getAvg()}<br>`;
+        }
+      }
+    </script>
+
+    <h3>* 객체의 속성 추가 및 제거</h3>
+    <button onclick="test3();">실행확인</button>
+    <div id="area3" class="area small"></div>
+
+    <script>
+      function test3(){
+        const area3 = document.getElementById('area3');
+        const people = {}; // 빈 객체 생성
+
+        // 객체의 속성 추가 - 비어있던 객체 people에 추가하는 것
+        people.name = "아무개"; // 추가하려는 값이 있으면 덮어쓰고, 없으면 만들어줌
+        people.hobby = ["게임","운동"];
+        people.dream = "푹쉬기";
+        people.age = 20;
+
+        // 덮어쓰기
+        people.dream = "엄청부자";
+        console.log(people);
+        
+        // ** 키 값은 추가할 수 없음
+
+        // 메소드 추가
+        people.toString = function(){
+          return `name : ${this.name}<br>
+                  hobby : ${this.hobby}<br>
+                  dream : ${this.dream}<br>
+                  age : ${this.age}`;
+        }
+        area3.innerHTML += people;
+
+        // 객체의 속성 제거
+        delete(people.hobby); // hobby가 삭제돼서 undefined로 나옴
+        area3.innerHTML += `<hr>`;
+        area3.innerHTML += people;
+      }
+    </script>
+
+</body>
+</html>
