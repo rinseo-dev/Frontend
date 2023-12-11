@@ -32,6 +32,7 @@
   </p>
 
   <h3>- [window.]open("url", "창이름", "창의 특성")</h3>
+  <p>** url만 들어가도 출력됨</p>
   <button onclick="test1();">네이버</button>
   <script>
     function test1(){
@@ -74,11 +75,11 @@
   <button onclick="test2();">실행확인</button>
   <script>
     function test2(){
-      const myWindow = window.open(); // 새로 열릴 창의 윈도우 객체를 myWindow에 넣음
+      const myWindow = window.open(); // 빈 창 열기 - 새로 열릴 창의 윈도우 객체를 myWindow에 넣음
       myWindow.alert("3초 후에 이 페이지를 종료합니다");
       /*
       setTimeout(() => {
-        
+      
       }, timeout); timeout자리에 ms단위로 시간을 입력
       */
 
@@ -102,6 +103,7 @@
       setInterval(() => {  // setInterval function() 이거..?였는데 화살표함수
         const now = new Date();
 
+        // 시, 분, 초 얻어와서 변수에 넣음
         let hour = now.getHours();
         let min = now.getMinutes();
         let sec = now.getSeconds();
@@ -132,7 +134,7 @@
 
   <h3>location 객체</h3>
   <p>브라우저 주소창과 관련된 객체</p>
-  <button onclick="console.log(location);">실행확인</button>
+  <button onclick="console.log(location);">location확인(console)</button>
   <!--console창에서 확인해보면 주소, 프로토콜, 포트 등 확인 가능-->
 
   <br><br>
@@ -152,10 +154,11 @@
   <br><br>
 
   <!--새로고침 후 페이지 최상위로 올라감-->
-  <button onclick="location.href=location.href;">새로고침</button> 
+  <button onclick="location.href=location.href;">새로고침(최상위올라감)</button> 
   <br><br>
+
   <!--내가 보고 있는 현재 위치에서 새로고침 됨-->
-  <button onclick="location.reload();">새로고침</button>
+  <button onclick="location.reload();">새로고침(현재 위치)</button>
 
   <h3>screen 객체</h3>
   <button onclick="console.log(screen)";>screen객체</button>
@@ -223,7 +226,7 @@
       console.log(img1);
 
       // 속성 추가(객체를 만든 후 속성 추가는 점'.'으로 추가)
-      img1.src = "resources/img/fubao.jpg";
+      img1.src = "resources/img/fubao.jpg"; // img태그에 src는 기본. 파일을 가져와야 하므로
       img1.width = "300"; // 단위를 안넣으면 기본값 px
       img1.height = "200";
 

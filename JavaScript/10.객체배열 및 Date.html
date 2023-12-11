@@ -28,7 +28,7 @@
       const student3 = {name: "최길동", java:86, oracle:85, html:59, css:72};
 
       // const students = [student0, student1, student2, student3]; 이런 배열을 만들것
-      const students =[]; // 일단 빈 배열 만듦
+      const students =[]; // 일단 빈 배열 만들어서 push로 넣기도 가능. 외부에서 값 받아넣을 때(?) 활용 가능
       students.push(student0);
       students.push(student1);
       students.push(student2);
@@ -39,10 +39,11 @@
       console.log(students[1].name);
 
       // 객체.속성 = 새로운값;
-      for(i in students){ // 배열이니까 i에는 index번호가 들어옴 / let으로 변수 선언 안해줘도 i는 변수로 선언됐음
+      for(i in students){ // students는 배열이라 i에 index번호가 들어옴 / let으로 변수 선언 안해줘도 i는 변수로 선언됐음
         // student[0].java = 90; // 0번 인덱스 학생 java점수만 90으로 변경
         students[i].java = 90; // 모든 학생의 java점수를 90으로 변경
-        students[i].getSum = function(){ // 없으면 만들고, 있으면 덮어쓰기 하므로 getSum이 생김
+        students[i].getSum = function(){ // 없으면 새로 만들고, 있으면 덮어쓰기 하므로 getSum이 생김
+          // 값을 function()으로...?가져 온다..?
           return this.java + this.oracle + this.html + this.css;
           // 모든 student에게 메소드 추가
         };
@@ -58,7 +59,7 @@
                             총점 : ${students[i].getSum()},
                             평균 : ${students[i].getAvg()}
                             <br>`;
-      }
+      } // students[i]에 대한 값들을 출력
     }
   </script>
 
@@ -73,8 +74,9 @@
     function test2(){
       const area2 = document.getElementById("area2");
 
-      const student0 = new Student("홍길동",100,80,90,70); // 값만 넣고 키가 무엇인지는 표시하지 않았음
+      const student0 = new Student("홍길동",100,80,90,70); // 매개 값만 넣고 키가 무엇인지는 표시하지 않았음
       // student0의 생성자인 Student()와 이름이 같을 필요는 없음
+      // const student0 = {name: "홍길동", java:100}; 이전에는 이런식으로 키:값, 키:값
 
       console.log(student0); // Student is not defined 현재는 정의된 것이 없음
       const student1 = new Student("이길동",80,90,58,75);
@@ -97,11 +99,13 @@
     //별도로 함수를 실행하게 만듦
     function Student(name,java,oracle,html,css){ // 매개변수로 받음 / new Student와 연결?
       // 일반속성 정의
-        this.name = name; // 지역변수 name을 this.name(키값)에 넣는것. name:name과 같음
+        this.name = name; // Student(name)으로 받은 지역변수 name을 this.name(키값)에 넣는것. name:name과 같음
         this.java = java; // this.java라는 키값에 매개변수로 받은 java를 넣어줌.
         this.oracle = oracle;
         this.html = html;
         this.css = css;
+        // Student를 따로 정의해서 값을 매칭 시킴.
+        // Student(매개변수)받은 것을 name, java, oracle 등에 넣어서 this.에 넣어줌.
 
         // 메소드 정의
         this.getSum = function(){
@@ -125,7 +129,8 @@
 
       const date1 = new Date(); // 현재 날짜와 시간
       
-      //2023년 10월 19일로 세팅(월 0~11) - 그래서 10월 표기 할 때 10-1로. 9하면 헷갈리니까(?)
+      // 새로운 날짜 넣기
+      // 2023년 10월 19일로 세팅(월 0~11) - 그래서 10월 표기 할 때 10-1로. 원하는 월수-1 로 표기함
       const date2 = new Date(2023, 10-1,19);
 
       // 시간까지

@@ -53,7 +53,7 @@
         area1.innerHTML += `----------------------------------------<br>`;
 
         // 객체의 속성에 접근하는 방법
-        // 방법1. 대괄호를 이용하는 방법 : 객체명['속성명'] => 반드시 문자열로 깃허브
+        // 방법1. 대괄호를 이용하는 방법 : 객체명['속성명'] => 반드시 문자열로
         area1.innerHTML += `<b>객체명['속성명']으로 접근하기</b><br><br>`;
         area1.innerHTML += `----------------------------------------<br>`;
         area1.innerHTML += `pName : ${product['pName']}<br>`;
@@ -87,11 +87,11 @@
           'age!!' : 20
         }
 
-        // 출력시 '객체명.속성명'은 사용 불가
+        // 출력시 '객체명.속성명'은 사용 불가 - 따옴표가 허용되지 않음
         // area2.innerHTML = `user name : ${user."user name"}<br>`;
 
-        // key값이 특수기호나 공백이 있을 때 객체명["속성명"]으로 작성해야 됨
-        // 반드시 대괄호를 이용해서 출력 해야 함
+        // key값에 특수기호나 공백이 있을 때 객체명["속성명"]으로 작성해야 됨
+        // 따옴표를 사용해야 하므로, 반드시 대괄호를 이용해서 출력 해야 함
         area2.innerHTML += `user name : ${user["user name"]}<br>`;
         area2.innerHTML += `age!! : ${user["age!!"]}<br>`;
       }
@@ -101,7 +101,7 @@
 
     <p>
       객체가 가지고 있는 모든 속성들에 순차적으로 접근하고자 한다면 반복문 사용 가능<br>
-      단, 단순한 for로는 불가능
+      단, 단순한 for로는 불가능 - for in 사용 가능
     </p>
 
     <div id="area3" class="area small"></div>
@@ -119,8 +119,10 @@
         // 배열에서는 for in에는 index가 들어왔지만
         // 객체에서 for in 은 key(객체의 속성명)가 들어옴
         for(key in game){ //key에 title 들어가고 한번 돌고 나면 price가 들어옴
-          // console.log(game.key); // 사용불가 (key:'title') key값에 따옴표가 붙어서 들어오므로.
-          console.log(game[key]); // ['key']가 되므로 대괄호를 사용하면 출력 가능함
+          // for in으로 key를 가져와서 사용하는 것
+          // console.log(game.key); // 사용불가 (key:'title') key값에 따옴표가 붙어서 가져오게 됨.
+          console.log(game[key]); // ['key']가 되므로, game.'key'는 불가능. 대괄호를 사용하면 출력 가능함
+          
 
           area3.innerHTML += `${key} : ${game[key]}<br>`;
           // index번호가 없기 때문에 일반적인 for문을 사용할 수 없음

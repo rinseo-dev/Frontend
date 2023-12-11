@@ -26,6 +26,7 @@
       const x1 = points[0];
       const y1 = points[1];
       const z1 = points[2]; // points에 있는 값을 인덱스 번호를 기준으로 나눠서 x1, y1, z1에 할당
+      // 할당을 하지 않을거라면 선언해주지 않으면 됨. 20을 할당하기 싫으면 points[0]에 대한 변수를 안만들면 됨
 
       console.log(`x=${x1},y=${y1},z=${z1}`);
 
@@ -51,8 +52,9 @@
       // rest연산자(...) : 여러개의 인자값(배열로 들어옴)
       // void method(...args) <- 설명이었음. 같은 사용방법인듯
       // rest는 변수이름이라 아무거나 지정 가능. 
-      const [x6, x7, ...rest] = [10,20,30,40,50,60,70]; // x6=10, x7=20, rest에 나머지 모두
-      console.log(`ES6 rest : [0]=${x6}, [1]=${x7}, rest=${rest}`); // res에는 rest=30,40,50,60,70가 들어옴
+      const [x6, x7, ...rest] = [10,20,30,40,50,60,70]; 
+      console.log(`ES6 rest : [0]=${x6}, [1]=${x7}, rest=${rest}`);
+      // x6=10, x7=20, rest에 나머지 모두...rest에는 rest=30,40,50,60,70가 들어옴
     })();
 
   /* 2. 객체의 분해 할당 */
@@ -68,18 +70,20 @@
       const model1 = car.model;
       console.log(`ES5 : company=${company1}, color=${color1}, model1=${model1}`);
 
-      // ES6에서의 분해할당
+      // ES6에서의 분해할당 - 중괄호 사용
+      // 키와 같은 이름을 사용 할 때는 ','로 구분하고, 새로운 이름을 지정할 땐 ':'를 사용해서 속성이름:변수명 지정
       const {company, color, model} = car; // car객체를 분해해서 순서대로 각각 값을 받음
       console.log(`ES6 : company=${company}, color=${color}, model1=${model}`);
 
       const {company:company2, color:color2, model:model2} = car;
       console.log(`ES6 : company=${company2}, color=${color2}, model1=${model2}`);
 
-      const fun1 = function(car){
-        const {company,color} = car;
+      const fun1 = function(car){ // 매개변수로 받은 car에서 company, color로 분해
+        const {company,color} = car; // 중괄호로 되어 있으므로 객체
         console.log(`fun1 : company=${company}, color=${color}`);
       }
       fun1(car); // 호출해야 쓸 수 있음. 매개변수 car넣어주고.
+      // fun1(car)에서 const car를 받아오고, function(car)로 넘겨준 다음 = car가 받아서 사용
 
       // const fun2 = (car) => {
       //   console.log(`fun2 : company=${company}, color=${color}`);
