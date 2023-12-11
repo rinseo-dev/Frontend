@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16.정규표현식문제2</title>
+</head>
+<body>
+  <h1>회원가입</h1>
+  <form>
+    * 아이디 : <input name="userId" id="userId">
+    <br>
+    첫글자는 반드시 영문자로 하고, 영문자, 숫자 포함 총 4~12자로 입력하시오.
+    <br>
+    * 비밀번호 : <input type="password" name="userPwd" id="userPwd">
+    <br>
+    영문자, 숫자, 특수문자로 총 8~15자로 입력하시오.
+    <br>
+    * 비밀번호 확인 : <input type="password" name="userRePwd" id="userRePwd">
+    <br>
+    * 이름 : <input name="name" id="name">
+    <br>
+    한글로만 이루어져 있어야 하며, 2글자 이상 입력
+    <br>
+    * 이메일 : <input type="email" name="email" id="email">
+    <br>
+    이메일 형식에 맞춰 입력
+    <br>
+    * 취미 : <input name="hobby" id="hobby">
+    <br>
+    * 거주지 : <select>
+                <option>서울</option>
+                <option>대전</option>
+                <option>대구</option>
+                <option>부산</option>
+              </select>
+    <input type="submit" onclick="return validate();">
+  </form>
+
+  <script>
+    function validate(){
+      // 아이디 : 첫글자는 반드시 영문자로 하고, 영문자, 숫자 포함 총 4~12자로 입력하시오.
+      const userId = document.getElementById('userId').value;
+      // const userIdCheck = /^[a-z]+[a-z0-9]{3,11}/i; // 처음 한글자 빼고 3,11
+      // const userIdCheck = /^[a-z][a-z0-9]{3,11}/i; // 선생님 답 1 / +안써도 되나봄.
+      const userIdCheck = /^[a-z][a-z\d]{3,11}/i; // 선생님 답 2 수정버전
+      if(userIdCheck.test(userId)){
+        alert('유효한 id');
+      }else{
+        alert('안돼 돌아가');
+      }
+
+      const userPwd = document.getElementById('userPwd').value;
+      const userRePwd = document.getElementById('userRePwd').value;
+
+      //비밀번호 : 영문자, 숫자, 특수문자로 총 8~15자로 입력하시오
+      // const userPwdCheck = /^[a-z0-9]/i; // 특수문자..?
+      // const userPwdCheck = /^.{8-15}/; // 선생님 답 - 수정전 한글까지 포함
+      const userPwdCheck = /^[a-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8-15}$/i;
+
+      // 이름 : 한글로만 이루어져 있어야 하며, 2글자 이상 입력
+      const nameCheck = /^[가-힣]{2,}$/;
+
+      // 이메일 : 이메일 형식에 맞춰서
+      const emailCheck = /^\w+@\w+\.\w+(\.\w)?$/i;
+      // \.: '.'점넣을 때 역슬래시 추가 / \w : 영문자, 숫자, _(underscore)
+      // () : 들어가도 되고, 안들어가도 되는 때 ()로 묶어줌. 메일주소에 .ac.kr처럼 '.'이 2번 들어갈 수 있으므로
+      // ()괄호로 묶인 그룹에'?'를 붙이면 0 또는 1회 사용됨을 나타냄.
+      // ex) `(abc)?(123)?`: "abc"와 "123"이 각각 0 또는 1회 등장
+    }
+  </script>
+</body>
+</html>

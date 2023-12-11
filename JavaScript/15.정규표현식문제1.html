@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15.정규표현식문제1</title>
+</head>
+<body>
+  <!-- <form action="01.개요.html"> -->
+  <form>
+    아이디 : <input name="userId" id="userId">
+    비밀번호 : <input type="password" name="userPwd" id="userPwd">
+    비밀번호확인 : <input type="password" name="userRePwd" id="userRePwd">
+    <input type="submit" onclick="return validate();">
+  </form>
+  <script>
+    function validate(){
+      // 아이디 : 영문자 또는 숫자로만 5글자 이상 12글자 이하
+      const userId = document.getElementById('userId').value;
+      // userId = /^[a-z][0-9]{5,12}/;
+      const userIdCheck = /^[a-z]|[0-9]{5,12}$/;
+
+      if(userIdCheck.test(userId)){
+        alert('유효한 id입니다');
+      }else{
+        alert('유효하지 않은 id 입니다');
+      }
+
+    // 비밀번호 : 영문자 또는 숫자로 시작하고, 중간에는 모든 글자 가능
+    const userPwd = document.getElementById('userPwd').value;
+    const userRePwd = document.getElementById('userRePwd').value;
+    // const userPwCheck = /^[a-z]|[0-9].[a-zA-Z]|[0-9]$/i; 이게 아니래..
+    const userPwdCheck = /^[a-z0-9]+[a-zA-Z0-9]*$/i;
+    if(userPwdCheck.test(userPwd)){
+      // 비밀번호 = 비밀번호확인 같은지 체크
+      if(userPwd !== userRePwd){
+        alert('비밀번호가 일치하지 않습니다');
+      }else{
+        alert('비밀번호가 일치합니다');
+      }
+    }else{
+      alert("비밀번호를 다시 입력해주세요");
+    }
+
+    // 이것도...
+    // 비밀번호 = 비밀번호확인 같은지 체크
+    // const userRePw = document.getElementById('userRePw').value;
+    //   if(userPw != userRePW){
+    //     alert('비밀번호가 일치하지 않습니다');
+    //     return false;
+    //   }else{
+    //     alert('비밀번호가 일치합니다');
+    //     return false;
+    //   }
+    }
+
+
+    // 아이디 : 영문자 또는 숫자로만 5글자 이상 12글자 이하
+    // 비밀번호 : 영문자 또는 숫자로 시작하고, 중간에는 모든 글자 가능
+    // 비밀번호 = 비밀번호확인 같은지 체크
+  </script>
+</body>
+</html>
