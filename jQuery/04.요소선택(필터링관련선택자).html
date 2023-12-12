@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <title>04.요소선택(필터링관련선택자)</title>
+</head>
+<body>
+  <h3>* 필터 관련 선택자</h3>
+  <!-- table>(tr>td*3)*5 -->
+  <table border="1">
+    <tr>
+      <th>이름</th>
+      <th>혈액형</th>
+      <th>거주지</th>
+    </tr>
+    <tr>
+      <td>메러디스</td>
+      <td>B</td>
+      <td>시애틀</td>
+    </tr>
+    <tr>
+      <td>크리스티나</td>
+      <td>O</td>
+      <td>스위스</td>
+    </tr>
+    <tr>
+      <td>마가렛</td>
+      <td>AB</td>
+      <td>보스턴</td>
+    </tr>
+    <tr>
+      <td colspan=2>총인원</td>
+      <td>3명</td>
+    </tr>
+  </table>
+
+  <script>
+    $(()=>{
+      $('tr:even').css('backgroundColor','lightpink'); // 인덱스번호의 짝수번tr:0,2,4...
+      $('tr:odd').css('backgroundColor','lightyellow'); // 인덱스의 홀수번tr:1,3,5...
+      // 아래 두개는 덮어쓰기 되면서 위의 배경색 회색으로 덮어쓰기 함.
+      $('tr:first').css('backgroundColor','lightgray'); 
+      $('tr:last').css('backgroundColor','lightgray');
+    })
+  </script>
+
+  <h3>* 필터링과 관련된 메소드</h3>
+  <p>
+    기준이 되는 요소 중에서 특정 요소만을 걸러서 선택해주는 메소드<br>
+    first(), last(), filter(), qe(), not()
+  </p>
+
+  <!-- h4.test{test-$}*6 -->
+  <h4 class="test">test-1</h4>
+  <h4 class="test">test-2</h4>
+  <h4 class="test">test-3</h4>
+  <h4 class="test">test-4</h4>
+  <h4>test-5</h4><!--5번만 클래스 제외-->
+  <h4 class="test">test-6</h4>
+
+  <script>
+    $(()=>{
+      $('h4').first().css('font-size','20px');
+      $('h4').last().css('font-size','30px');
+
+      // .filter('요소') : 선택한 요소만 가져오기
+      $('h4').filter('.test').html('<i>나중에 변경</i>');
+      
+
+      // .not(요소) : 선택한 요소가 아닌 것
+      // h4요소 중 test class가 아닌 것을 찾아 css변경
+      $('h4').not('.test').css('color','hotpink');
+
+      // .text() == innerText()와 동일
+      // 인덱스번호 2번인 text를 가져옴 / .text == innerText
+      $('h4').eq(2).text('<i>eq로 변경함</i>');
+    })
+  </script>
+</body>
+</html>
