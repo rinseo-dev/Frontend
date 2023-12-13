@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <title>08.영역(content)관련 메소드</title>
+  <style>
+    .wrap,.wrap * { /*wrap과 warp 하위의 모두*/
+      border : 1px solid black;
+      color : gray;
+      display:block; /*모두 한줄씩 차지하도록 적용*/
+      padding:5px; /*들여쓰기*/
+      margin:15px; /*요소들끼리 떨어지게 */
+    }
+  </style>
+</head>
+<body>
+  <h1>Content(innerHTML, innerText) 관련 메소드</h1>
+  
+  <h3>* html(['문구']) : innerHTML 속성과 관련된 메소드</h3><!--입력한 문구가 html로 들어갔음-->
+  
+  <p>
+    선택된 요소의 content영역의 값을 리턴해주거나 또는 변경해주는 메소드<br>
+    > $('선택자').html() : 선택된 요소의 content영역의 값을 반환(html태그까지 포함)<br>
+    > $('선택자').html('문구') : 선택된 요소의 content 영역값을 해당 문구로 변경(html 태그가 존재하면, 태그로써 해석)<br>
+  </p>
+
+  <h1 id="test1">
+    <a>네이버로</a>
+  </h1>
+
+  <h1 id="test2">
+  </h1>
+
+  <script>
+    $(()=>{
+      const tmp = $('#test1').html(); // a태그 전체를 가져옴 -> <a>네이버로</a>
+      console.log(tmp);
+      
+      $('#test2').html(tmp); // #test2사이에 <a>네이버로</a>를 넣은 상황.
+      /*
+        <h1 id="test2">
+          <a>네이버로</a>
+        </h1>
+      */
+      $('#test2').children().attr('href','https://www.naver.com');
+      // children으로 #test1에서 #test2로 가져온 a태그를 선택함. #test2인 h1의 자손이 a태그인 상태.
+      // attr로 href,url을 넣어줌
+      /*
+        <h1 id="test2">
+          <a href="https://www.naver.com">네이버로</a>
+        </h1>
+      */
+    })
+  </script>
+
+  <h3>* text(['문구']) 메소드 : innerText 속성과 관련된 메소드</h3>
+  <p>
+    선택된 요소의 content 영역의 값을 리턴해주거나 또는 변경해주는 메소드<br>
+    > $('선택자').text() : 선택된 요소의 content 영역의 텍스트를 반환<br>
+    > $('선택자').text('문구') : 선택된 요소의 content 영역의 값을 '문구'로 변경(태그도 텍스트로)<br>
+  </p>
+
+  <h1 id="test3">
+    <a>구글로</a>
+  </h1>
+
+  <h1 id="test4">
+  </h1>
+
+  <script>
+      $(()=>{
+        const tmp = $('#test3').text();
+        console.log(tmp);
+
+      $('#test4').text(`<a>${tmp}</a>`)
+      /*
+        <h1 id="test2">
+          <a>구글로</a> <- 이 부분이 태그가 아니라 텍스트로 들어감
+        </h1>
+      */
+      })
+  </script>
+  
+  <hr>
+
+  <!-- div.test{테스트}*3 -->
+  <div class="test"><b>테스트</b></div>
+  <div class="test">테스트</div>
+  <div class="test">테스트</div>
+
+  <script>
+    $(()=>{
+      // $('.test').html('<h1>글자 변경</h1>');
+
+      // 콜백함수 : 함수 실행 후 반환된 결과값을 가지고 반영(매개변수에 들어가는 함수)
+      // 선택된 요소들을 순차적으로 접근할 때마다 해당 function
+
+      // let count = 0;
+      // $('.test').html(function(){
+      //   return '<h1>콜백함수로 글자 변경' + count++ + '</h1>';
+      // })
+      /*
+      챗gpt 설명
+      `.test` 클래스를 가진 각 요소의 HTML 내용을 함수를 통해 변경합니다.
+      이 함수는 각 요소에 대해 호출되며, 현재의 HTML 내용을 변경하는 새로운 HTML 문자열을 반환합니다.
+      이것이 바로 콜백 함수입니다. `count` 변수를 사용하여 각 요소에 대해 고유한 내용을 생성하고 있습니다.
+
+      따라서, 위 코드에서 `.html()` 메서드에 전달된 함수는 콜백 함수로서 작동합니다.
+      */
+
+      // .html()함수 자체가 2개이상의 값이 들어오면 for문처럼 돌린다고..?
+      $('.test').html(function(index,html){// function(html)은 변수이름으로 사용함.여기에는 <b>테스트</b>가 들어옴.
+        return `<h1>인덱스:${index},content내용:${html}</h1>`;
+        // ${index}로 index변수에 들어있는 숫자 출력 / ${html}로 html변수에 들어있는 글자 출력
+        // 위에서 선언한 $('.test').html('<h1>글자 변경</h1>');를 주석처리하면
+        // 변수html에는 '테스트'가 들어옴
+      }) 
+    })
+  </script>
+</body>
+</html>
