@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <title>07.요소선택(순회)메소드 동위</title>
+  <style>
+    .wrap,.wrap * { /*wrap과 warp 하위의 모두*/
+      border : 1px solid black;
+      color : gray;
+      display:block; /*모두 한줄씩 차지하도록 적용*/
+      padding:5px; /*들여쓰기*/
+      margin:15px; /*요소들끼리 떨어지게 */
+    }
+  </style>
+</head>
+<body>
+  <h3>* 동위(sideways) 메소드</h3>
+  <p>
+    레벨이 같은 요소들을 선택할 수 있는 메소드
+  </p><br><br>
+
+  <div class="wrap">
+    <p>p</p>
+    <span>span</span>
+    <h2>h2</h2>
+    <h3>h3</h3>
+    <p>p</p>
+  </div>
+  <p>
+    <h4>- $('선택자').siblings()</h4>
+    선택된 요소와 같은 레벨에 있는 모든 요소들을 선택
+
+    <h4>- $('선택자').siblings('선택자')</h4>
+    선택된 요소와 같은 레벨에 있는 모든 요소들 중, 제시한 값과 일치하는 요소만 선택
+
+    <h4>- $('선택자').next|prev()</h4>
+    선택된 요소와 같은 레벨중 바로 다음 요소 혹은 앞의 요소 하나만 선택
+
+    <h4>- $('선택자').nextAll|prevAll()</h4>
+    선택된 요소와 같은 레벨 중 다음 요소 혹은 앞의 요소들 모두 선택
+
+    <h4>- $('선택자').nextUtil('선택자')</h4>
+    선택된 요소와 같은 레벨의 다음 요소들 중 제시한 값과 일치하는 요소 앞 까지만 선택
+    단, 제시한 값인 선택자는 포함되지 않음. nextUntil('선택자') 바로 앞까지만 선택됨
+  </p>
+
+  <script>
+    $(()=>{
+      const style1 = {color:'red', border:'2px solid red'};
+      const style2 = {color:'blue', border:'2px solid blue'};
+      const style3 = {color:'green', border:'2px solid green'};
+      const style4 = {color:'orange', border:'2px solid orange'};
+      const style5 = {color:'purple', border:'2px solid purple'};
+
+      const back1 = {backgroundColor :'yellow'};
+
+      $('h2').siblings().css(style1); // h2 형제 태그 전부
+      $('h2').siblings('p').css(style2); // h2 형제 태그 중 p태그만
+      
+      $('h2').next().css(style3); // h2 바로 다음 태그
+      $('h2').nextAll().css(style4); // h2 바로 다음 태그 모두 - 이것때문에 next()먹힌게 덮어쓰기 됨
+      $('h2').nextUntil('p').css(style5); // h2 바로 다음 태그중 p태그 바로 전까지
+
+      $('h2').prev().css(back1); // h2 바로 앞의 태그
+      $('h2').prevAll().css('font-size','3em'); // h2 앞의 모든 태그
+      $('h2').prevUntil('p').css('border','dotted'); // h2 앞의 태그 중 p태그 앞 까지
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang=" ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+<style>
+    .wrap {
+        margin: 20px auto;
+        max-width: 1200px;
+        width: 100%;
+        padding:0 20px
+    }
+    .tab {
+        display:flex;
+    }
+    li ,ul {
+        list-style: none;
+    }
+    .tab li {
+        width: 20%;
+        padding:15px;
+        border:1px solid #ddd;
+        text-align: center;
+        cursor: pointer;
+    }
+    .tab li.on {
+        background:navy;
+        color: #fff;
+    }
+    .con {
+        padidng-top:20px
+    }
+    .con > div {
+        border:1px solid #ddd;
+        width: 100%;
+        height:300px;
+        font-size:35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+    }
+    .con> div {
+        display: none;
+    }
+    .con > div.on {
+        display: flex;
+    }
+
+</style>
+<div class="wrap">
+    <ul class="tab">
+        <li class="on">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <div class="con">
+        <div class="con_box1 on">A</div>
+        <div class="con_box2">B</div>
+        <div class="con_box3">C</div>
+        <div class="con_box4">D</div>
+        <div class="con_box5">E</div>
+    </div>
+</div>
+<script>
+  $(()=>{
+    // $('ul li').click(function(){
+    // // $('ul li').click().each(function(index, el){
+    //   $(this).each(function(index,el){
+    //     console.log(el);
+    //     // $('.con>div').eq(index).text(content);
+    //   })
+    // }
+
+    $('ul li').click(function(){
+    var idx = $(this).index() + 1;
+      console.log(idx);
+      $("ul li").removeClass("on");
+      $(this).addClass("on");
+      
+      $(".con > div").removeClass("on");
+      $(".con_box"+idx).addClass("on");
+      
+    });
+
+  });
+</script>
+</body>
+</html>
+

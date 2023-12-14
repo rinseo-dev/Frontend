@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <title>01.개요</title>
+</head>
+<body>
+  <h1>jQuery 개요</h1>
+  <h3>* jQuery란?</h3>
+  <p>
+    기존의 자바스크립트 언어만으로 구현하기엔 복잡했던 구문 작성들을<br>
+    간소화 하기 위해 '존 레식'에 의해 만들어짐<br>
+    javaScript기반 라이브러리<br>
+    즉, javaScript언어로 유용한 함수나 내용들이 이미 정의되어 있는 모음집<br><br>
+
+    복잡한 자바스크립트 구문을 보다 짧고 쉽게 개발 가능<br><br>
+    > jQuery의 장점<br>
+    1) DOM요소와 관련된 스크립트를 보다 쉽게 구현할 수 있음<br>
+    2) ajax(비동기식 통신), 이벤트 처리 등 폭넓게 지원<br>
+    3) jQuery와 관련된 확장형 플러그인, 오픈 api등을 지원<br>
+    &emsp;(챠트, 슬라이드 등 ...)
+  </p>
+
+  <h3>* jQuery 라이브러리 연결 방법</h3>
+  <p>
+    head 태그 내에 script태그로 외부 jQuery관련된 파일 연결<br>
+    오프라인, 온라인 방식 있음<br>
+    - jQuery 공식 사이트<br>
+    <a href="https://jquery.com/" target="_blank">jQuery 공식 사이트</a><br><br> 
+    
+    1. jQuery를 직접 다운로드 받아 경로 지정하여 사용<br><!--resources/js에 저장해서 사용-->
+    2. CDN 방식 ** 주소로 가져와서 사용
+  </p>
+    <!--메인 페이지에 download를 선택하면
+    Download the compressed, production jQuery 3.7.1
+    Download the uncompressed, development jQuery 3.7.1
+    같은 jQuery파일로 compressed, uncompressed 두가지 버전을 다운로드 가능-->
+    <!--CDN버전을 사용할 경우 다운로드 문서 중간 즈음에
+        https://releases.jquery.com/에 들어가서
+      jQuery Core 3.7.1 - uncompressed, minified, slim, slim minified 
+      4가지 버전 중 원하는걸 선택하면 됨. 수업에선 minified 복사해서 사용.
+      CDN은 구글,MS 등 공개된 다른 버전으로 사용해도 됨-->
+    <!--CDN 주소를 복사하면 아래처럼 길게 잡히는데, <script src="주소.js"></script>부분만 있어도 작동함
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"></script>-->
+  <hr>
+  <h3>* jQuery 구문 작성하기</h3>
+  <p>
+    jQuery 구문으로 DOM요소를 다루는 구문을 기본적으로 작성하기 때문에<br>
+    문서상에 요소들이 다 만들어지고나서 실행되어야 함<br><br>
+  </p>
+
+  <b>* 순수 자바 스크립트</b>
+  <pre>
+    window.onload = function(){
+      실행내용;
+    }
+
+    javascript에서의 window.onload구문은
+    해당 문서의 요소들이 모두 로드되고 연동되어있는 외부문서들도 다 가져온 뒤에 실행됨
+    이 문서에서 단 한번만 작성 가능
+  </pre>
+
+  <b id="test">> jQuery에서는 3가지 구문으로 제공</b>
+  <pre>
+    1) jQuery(document).ready(function(){ // 매개변수 document는 전체문서를 의미
+        실행 내용 ;
+      })
+
+    2) $(document).ready(function(){ // jQuery 명시 대신 $로 표현 가능
+        실행 내용 ;
+      })
+    
+    3) $(function() {
+        실행내용;
+      })
+    
+    해당 문서의 요소들만 다 로드되면 곧바로 실행됨
+    여러번 기술가능함(제한 없음) 순서대로 실행
+  </pre>
+
+  <script>
+    // window.onload는 2개 이상일 때 가장 하단에 있는 것만 실행됨
+    window.onload = function(){
+      console.log("window.onload 구문 실행됨"); // 콘솚창에 실행 확인
+    }
+    window.onload = () => console.log("2.window.onload구문 실행됨(화살표함수)");
+    // function에 매개변수가 없어도 괄호는 넣어야 함
+
+    jQuery(document).ready(function(){
+      console.log("jQuery(document).ready 구문 실행");
+    })
+
+    $(document).ready(function(){
+      console.log("$(document).ready 구문 실행");
+    })
+
+    // ES5 문법
+    $(function(){
+      console.log("$(function())구문 실행");      
+    })
+
+    // ES6 화살표함수 사용
+    $(() => {
+      console.log("$(() =>{}) 구문 실행");
+      
+      // h3태그에 스타일 적용하기 - Js구문
+      /*
+      const h3Arr = document.getElementsByTagName("h3"); // 's'가 들어가면 '배열'로 들어옴
+      for(let i in h3Arr){ // 배열로 들어와서 for문 가능
+        h3Arr[i].style.color = "red";
+      }*/
+
+      // jQuery 구문
+      $("h3").css("backgroundColor", "yellow"); //css(propertyName: string): string
+      $("#test").css("color","red");
+      /*
+        $("선택자") // 태그는 바로 쓰고, '#아이디', '.클래스'
+        .css => 선택된 요소들의 스타일 지정
+      */
+
+      // javaScript의 iife == jQuery의 $(function(){}) / 둘은 동일하게 즉시 실행됨
+      
+    })
+  </script>
+</body>
+</html>

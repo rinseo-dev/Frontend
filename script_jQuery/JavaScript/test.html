@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <!-- <form action="member.jsp" method="post" name="regFrm"> -->
+    <form action="member.jsp" method="post" name="regFrm">
+        <table border="1" width="380">
+            <tr>
+                <td colspan="2" align="center">회원가입</td>
+            </tr>
+            <tr>
+                <td width="30%">아이디</td>
+                <td width="70%"><input name="id"></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" name="pwd"></td>
+            </tr>
+            <tr>
+                <td>비밀번호 확인</td>
+                <td><input type="password" name="repwd"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" value="회원가입" onclick="inputCheck();">
+                    <input type="reset" value="초기화">
+                </td>
+                
+            </tr>
+        </table>
+    </form>
+    <script>
+        function inputCheck(){
+            let f = document.regFrm; // 반복되는 부분은 변수로 처리해도 됨
+            // if(document.regFrm.id.value == ""){ //regFrm에 #id의 value가 공백이라면
+            if(f.id.value == ""){
+                alert("아이디를 입력해 주세요");
+                document.regFrm.id.focus();
+            return;
+            }
+
+            if(document.regFrm.pwd.value != document.regFrm.repwd.value){
+                alert("비밀번호가 일치하지 않습니다");
+                document.regFrm.repwd.value="";
+                document.regFrm.repwd.focus();
+            }
+            document.regFrm.submit;
+        }
+    </script>
+</body>
+</html>

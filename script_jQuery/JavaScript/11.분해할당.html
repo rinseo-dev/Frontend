@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11.분해할당</title>
+</head>
+<body>
+  <h1>분해 할당</h1>
+  <p>배열의 객체에 들어있는 속성들을 각각 변수에 할당</p>
+
+  <h4>콘솔로 확인</h4>
+  <script>
+    // iife ..?그거 즉시실행함수
+    // (function() {})(); // 중괄호는 실행 구문, 마지막 괄호엔 매개변수에 넘겨줄 값
+    (function() {
+  /*
+  (구조) 분해 할당 종류
+  1. 배열의 분해 할당
+  2. 객체의 분해 할당
+  */
+
+  /* 1. 배열의 분해 할당 */
+      // ES5에서의 분해 할당 방법
+      const points = [20, 30, 40]; // 좌표 x,y,z를 배열에 넣음
+      const x1 = points[0];
+      const y1 = points[1];
+      const z1 = points[2]; // points에 있는 값을 인덱스 번호를 기준으로 나눠서 x1, y1, z1에 할당
+      // 할당을 하지 않을거라면 선언해주지 않으면 됨. 20을 할당하기 싫으면 points[0]에 대한 변수를 안만들면 됨
+
+      console.log(`x=${x1},y=${y1},z=${z1}`);
+
+      //ES6에서의 분해 할당 방법
+      const [x2, y2, z2] = points; // 각 배열에 있는 자리에 맟춰서 분해 할당 됨
+      console.log(`x=${x2},y=${y2},z=${z2}`);
+
+      // 값을 무시하거나 추가할 때 ','로 구분해서 넣어주면 됨. 해당 자리를 비우면 됨.
+      // 두번째 값 무시
+      const [x3, , z3] = points;
+      // 분해할당을 할 때는 []안의 값이 const형으로 들어가기 때문에
+      // 앞에서 x2,y2,z2로 선언된걸 뒤에서 다시 x2,y2,z2로 선언할 수 없음
+      // console.log(`x=${x3},y=${y3},z=${z3}`); - y3 is not defined . 변수 y3이 선언이 안돼있으므로 오류
+      console.log(`x=${x3},z=${z3}`); // 출력에서 빼주기 가능
+
+      // 두번째 세번째 값 무시
+      const [x4, , ,w4] = points; // 2,3번째 값은 가져오지 않고 4번째 값 추가한 경우 - undefined
+      console.log(`ES6 : x=${x4}, w=${w4}`); // w4변수는 존재하므로 오류는 발생하지 않지만, 값이 없음
+
+      const [x5, , ,] = points;
+      console.log(`ES6 : x=${x5}`);
+
+      // rest연산자(...) : 여러개의 인자값(배열로 들어옴)
+      // void method(...args) <- 설명이었음. 같은 사용방법인듯
+      // rest는 변수이름이라 아무거나 지정 가능. 
+      const [x6, x7, ...rest] = [10,20,30,40,50,60,70]; 
+      console.log(`ES6 rest : [0]=${x6}, [1]=${x7}, rest=${rest}`);
+      // x6=10, x7=20, rest에 나머지 모두...rest에는 rest=30,40,50,60,70가 들어옴
+    })();
+
+  /* 2. 객체의 분해 할당 */
+      const car = { // car라는 객체를 만들었음
+        company : '삼성',
+        color : "black",
+        model : "SM7"
+      }
+
+      // ES5에서의 분해할당
+      const company1 = car.company;
+      const color1 = car.color;
+      const model1 = car.model;
+      console.log(`ES5 : company=${company1}, color=${color1}, model1=${model1}`);
+
+      // ES6에서의 분해할당 - 중괄호 사용
+      // 키와 같은 이름을 사용 할 때는 ','로 구분하고, 새로운 이름을 지정할 땐 ':'를 사용해서 속성이름:변수명 지정
+      const {company, color, model} = car; // car객체를 분해해서 순서대로 각각 값을 받음
+      console.log(`ES6 : company=${company}, color=${color}, model1=${model}`);
+
+      const {company:company2, color:color2, model:model2} = car;
+      console.log(`ES6 : company=${company2}, color=${color2}, model1=${model2}`);
+
+      const fun1 = function(car){ // 매개변수로 받은 car에서 company, color로 분해
+        const {company,color} = car; // 중괄호로 되어 있으므로 객체
+        console.log(`fun1 : company=${company}, color=${color}`);
+      }
+      fun1(car); // 호출해야 쓸 수 있음. 매개변수 car넣어주고.
+      // fun1(car)에서 const car를 받아오고, function(car)로 넘겨준 다음 = car가 받아서 사용
+
+      // const fun2 = (car) => {
+      //   console.log(`fun2 : company=${company}, color=${color}`);
+      // }
+      // fun2(car);
+
+      const fun2 = ({model,company}) => { // 받을 때 분해할당으로 받아서 찍어주기
+        console.log(`fun2 : model=${model}, company=${company}`);
+      }
+      fun2(car);
+
+      // 문서에서 가져와서 사용하는 객체 DOM 사용법이었음
+  </script>
+</body>
+</html>

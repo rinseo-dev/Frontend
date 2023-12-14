@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.변수와자료형</title>
+    <style>
+        #area{
+            width: 400px;
+            border : 1px solid;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>변수와 자료형</h1>
+    <h2>변수 선언시 var뿐만 아니라 let, const를 이용하여 선언 가능</h2>
+
+    <h3>* var, let, const의 차이점</h3>
+    <h4>1)변수 선언 방법</h4>
+    <button onclick="diffDeclare();">변수 선언 방법</button>
+
+    <h4>2)스코프(사용가능한 범위)</h4>
+    <button onclick="diffScope();">스코프(사용가능한 범위)</button>
+
+    <script>
+        function diffDeclare(){
+            // 1) var은 중복선언 가능(단점), 재할당 가능
+            var userId = "user01";
+            console.log(userId);
+
+            var userId = "user02"; // 중복선언 가능. var userId라는 선언이 중복됐음
+            console.log(userId);
+
+            // 같은 영역 안에서 동일안 변수를 사용하면 다른 언어에서는 오류가 발생함
+            // Js에서는 '재할당'이 일어나므로 사용 가능함.
+            userId = "user03"; // 재할당
+            //이미 선언된 userId라는 공간에 "user03"값으로 다시 재할당 한 것
+            console.log(userId);
+
+            //diffDeclare()함수가 들어간 버튼을 클릭하면 user01, user02두개가 console에 출력됨
+            console.log("--------------------");
+
+            // 2) let은 중복선언 불가능
+            let userPwd = "pass01";
+            console.log(userPwd);
+
+            //let userPwd = "pass02"; let은 같은 지역 내에서 중복 선언 불가능
+            userPwd = "pass02"; // 재할당은 가능
+            console.log("--------------------");
+
+            // 3) const는 중복선언 불가능, 재할당 불가능(상수같은 개념 == 한번 초기화 하면 값 변경 불가능)
+            const userName = "홍길동";
+            console.log(userName);
+
+            //const userName = "홍길동";
+
+            // userName = "김길순"; // 재할당 불가능. 작성에는 오류가 없지만 출력시 TypeError 발생
+            // console.log(userName);
+
+            /*
+                var은 자유롭게 변수 선언, 사용할 수 있다는 장점이 있지만
+                중복된 변수가 남발할 수 있고, 의도치않게 값이 변경되어 있을 수 있음 => 가장 큰 단점
+                -> 보완되어 나온 것이 let, const
+
+                권장사항 : let, const 위주로 사용
+            */
+            console.log("====================");
+        }
+        
+        function diffScope(){
+            // 1) var : 변수가 선언된 "함수 영역" 내에서 사용 가능
+            // var name ="홍길동";
+            // console.log(name);
+
+            if(true){
+                var name = "이길동";
+                console.log(name);
+            }
+            console.log(name); // java에서는 name변수가 지역 안에 있을 때 외부에서 사용할 수 없었음
+            // Js는 함수 영역안에서 정의된 모든 것을 사용할 수 있음.
+
+            for(var i=0; i<4; i++){
+                console.log(name); // console에 이길동이 4번 출력됨
+            }
+            console.log("i="+i); // for문 바깥이지만 i값도 출력됨.
+            console.log("--------------------");
+
+            // 2) let, const : 변수가 선언된 '블럭{}'내에서만 사용 가능(자바와 유사함)
+            if(true){
+                let hobby = "운동";
+                const gender = "M";
+            }
+            //if문 안에 선언 해주고, 출력은 if문 바깥에서 하려고 할 때 let, const는 불가능
+            console.log(hobby);
+            console.log(gender);
+            // ReferenceError가 발생함. let과 const는 지역을 벗어나면 not defined으로 인식
+        }
+    </script>
+
+    <h3>* 변수 선언 위치에 따른 전역변수 / 지역변수</h3>
+    <!-- 전역 변수 : script바로 밑에 작성-->
+    <!-- 자바에 클래스 바로 밑에 인스턴스 변수 선언하면 모든 곳에서 사용할 수 있듯(?) -->
+
+    <script>
+        // window.onload는 해당 문서가 로딩이 다 된 후에 바로 실행시킬 때 사용하는 코드
+        // window.onload = function(){ // 문서가 로딩이 완료되면 바로 출력됨. 클릭 필요 없음
+        //     console.log("문서로딩완료");
+        // }
+
+        // 특정 함수영역 밖에 선언된 변수는 전역변수(어디든 사용 가능)
+        var declareVar = "var로 전역변수";
+        let declareLet = "let으로 전역변수";
+        const declareConst = "const로 전역변수";
+
+        declareNone = "그냥 전역변수"; // function 안, 밖 위치에 상관없이 script 안 모든 곳에서 사용 가능
+
+        //java에서 인스턴스변수, 클래스변수 = 전역변수
+        window.onload = function(){
+            // console.log(declareVar);
+            // console.log(declareLet);
+            // console.log(declareConst);
+            // console.log(declareNone);
+            console.log("--------------------");
+
+            //지역변수 선언
+            // 지역변수와 전역변수의 이름이 같다면, 지역변수가 우선순위가 높음
+            var declareVar = "var로 지역변수";
+            let declareLet = "let으로 지역변수";
+            const declareConst = "const로 지역변수";
+            console.log(declareVar);
+            console.log(declareLet);
+            console.log(declareConst);
+            console.log("--------------------");
+        
+        /*
+        내용 설명용 java코드
+        class A {
+            String name = "부모";
+        }
+
+        class B extends A {
+            String name = "자식";
+
+            String method(){
+                String name="메소드안쪽";
+                System.out.println(name);
+            }
+        }
+        */
+
+        // 전역변수에 접근하려면 => window. 또는 this.로 접근 가능. 단, var로 선언한 것만 가능
+        console.log(window.declareVar);
+        console.log(this.declareVar); // this.하면 전역변수
+
+
+        // let, const 같은 경우 안됨 => undefined
+        console.log(window.declareLet); // var로 선언한 것만 가능하므로 let, const는 안됨
+        console.log(this.declareConst);
+        console.log("--------------------");
+
+        //앞에 선언이 없으면(변수명 앞에 아무런 키워드가 없으면) 무조건 전역변수
+        declareNone = "얘는 뭘까요?";
+        console.log("지역변수로 출력 : " + declareNone);
+        console.log("전역변수로 출력 : " + this.declareNone);
+        
+        }
+
+        function test(){
+            console.log(declareNone);
+            //다른 function에서 declareNone은 사용할 수 있지만, 다른 지역변수들은 사용할 수 없음
+        }
+    </script>
+
+    <hr>
+
+    <h3>* 자료형</h3>
+    <p>
+        Dynamic Typing: 변수 선언시 자료형을 별도로 지정하지 않음(자료형의 개념이 없는건 아님)
+        => 변수별로 타입이 지정되지 않고, 대입되는 값에 따라 타입이 결정됨
+    </p>
+
+    <h4>자바스크립트의 자료형</h4>
+    <ul>
+        <li>String(문자열)</li>
+        <li>number(숫자)</li>
+        <li>boolean(논리값)</li>
+        <li>object(객체)</li>
+        <li>function(함수)</li>
+        <li>undefined(정의되어 있지 않은 변수-없는 변수)</li>
+        <!--정의 됐는데 값이 없으면 null, 아예 정의되지 않았으면 undefined-->
+    </ul>
+
+    <button onclick="typeTest();">자료형 테스트</button>
+    <div id="area"></div>
+    <script>
+        function typeTest(){
+            const name = "홍길동";
+
+            const age = 20;
+            const bool = false;
+            const hobby = ["영화감상","js공부","잠자기"]; // 배열 객체
+            // const divE1 = document.getElementById("area"); id찾아오기나 selector 사용 둘 다 가능
+            const divE1 = document.querySelector("#area"); // 객체를 얻어옴
+            // 여기서 id=area 값을 가져와서 divE1변수에 할당
+
+            const user = { // 객체를 만듦 /  변수(key) : 값 형태로 보면 됨
+                name : "애드인에듀",
+                age : 27,
+                id : "addinedu"
+            }
+            // ','를 기준으로 원하는 객체를 쌍으로 넣어주면 됨.
+
+            const testFn = function(){
+                alert("함수 호출");
+            }
+
+            let noval;
+            
+            console.log("===================="); 
+            console.log(typeof name,name );
+            console.log(typeof age,age );
+            console.log(typeof bool,bool );
+            console.log(typeof hobby,hobby );
+            console.log(typeof divE1,divE1 );
+            console.log(typeof user,user );
+            console.log(typeof testFn,testFn );
+            console.log(typeof noval, noval);
+            // typeof로 해당 자료의 자료형을 가져올 수 있음
+
+
+            // 백틱(backtick) 사용시 \n을 사용하지 않아도 줄바꿈이 들어감(ES6부터)
+            // 백틱안에 달러기호 ${}를 사용하면 변수나 표현식을 표현할 수 있음 - 값 출력
+            const name2 = `Hello ${name}`; // ` : backtick
+            console.log(name2);
+
+            // 화면에 출력 시(텍스트로 출력되기 때문에 콘솔과 다르게 보일 수 있음)
+            divE1.innerHTML = typeof name + ", " +name + "<br>"; // backtick없음
+            divE1.innerHTML = `${typeof name}, ${name} <br>`;
+            divE1.innerHTML += `${typeof age}, ${age} <br>`;
+            divE1.innerHTML += `${typeof bool}, ${bool} <br>`;
+            divE1.innerHTML += `${typeof hobby}, ${hobby} <br>`;
+            divE1.innerHTML += `${typeof divE1}, ${divE1} <br>`;
+            divE1.innerHTML += `${typeof user}, ${user} <br>`;
+            divE1.innerHTML += `${typeof testFn}, ${testFn} <br>`;
+            divE1.innerHTML += `${typeof noval}, ${noval} <br>`;
+            // backtick을 사용하면 쉼표도 변수도 한번에 써줄 수 있음
+            // typeof로 해당 자료의 자료형을 가져올 수 있음
+
+        }
+    </script>
+</body>
+</html>

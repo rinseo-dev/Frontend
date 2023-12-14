@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.데이터입출력</title>
+    <style>
+        .area{border:1px solid;}
+    </style>
+</head>
+<body>
+    <h1>자바스크립트에서의 데이터 입/출력</h1>
+
+    <pre>
+        * window : 자바스크립트 내장 객체로, 브라우저 창이 열릴 때마다 하나씩 만들어지는 객체
+        브라우저 창 안에 존재하는 모든 요소들의 최상위 객체( window.을 생략하고 표현 가능)
+        ** ex) window.alert, window.console.log -> alert, console.log 가능
+
+        * document : 웹 문서마다 하나씩 만들어지는 객체(html 문서에 대한 정보들을 가지고 있음)
+    </pre>
+
+    <h2>1. 데이터를 출력하는 구문</h2>
+    <p>
+        1) [window.]alert("알림창에 출력할 문구");<br>
+        2) [window.]console.log("콘솔창에 출력할 문구");<br>
+        3) document.write
+        4) 선택한 요소.innerHTML | innerText = "요소에 출력할 문구";
+    </p>
+
+    <h3>3) document.write("화면상에 출력할 문구");</h3>
+    <button onclick="docWrite();">화면에 출력</button>
+    <!--Js에서는 docWrite()형태를 함수라고 함. ()괄호 안에 매개변수 넣을 수 있음-->
+
+    <script>
+        function docWrite(){
+            // document.write("엘라스틱서치 로그 빅데이터반");
+
+            // document.write("<b>3강의실</b><br><h2>빅데이터반</h2>");
+            //출력할 문구에 html태그가 있을 경우 시각적인 요소로 보여짐
+
+
+        // 작성할 표를 길게 늘여쓸 수 있지만, 
+        // var dw = <table border='1'><tr><td>html</td><td>css</td>td>JavaScript</td></tr></table>
+        // var에 변수로 표를 넣어서 document.write(변수)로 출력하거나,
+        // document.write(테이블만드는 태그)로 출력할 수 있음.
+
+            var dWrite = "<table border='1'>";
+                dWrite += "<tr>";
+                dWrite +=   "<td>html</td>";
+                dWrite +=   "<td>css</td>";
+                dWrite +=   "<td>JavaScript</td>";
+                dWrite += "</tr>";
+                dWrite += "</table>";
+
+            document.write(dWrite);
+
+            //같은 형태를 작성할 수 있음
+            document.write("<table border='1'>"
+                            + "<tr>"
+                            +  "<td>html</td>"
+                            +  "<td>css</td>"
+                            +  "<td>JavaScript</td>"
+                            + "</tr>"
+                            +"</table>");
+        }
+    </script>
+    <br><br>
+    <h3>4) 선택한 요소.innerHTML | innerText = "요소에 출력할 문구";</h3>
+    <div class="area" id="area1">
+        자바스크립트에서 어떤 요소 안의 값을 가지고 온다거나
+        변경하고자 할 때 <b>innerHTML, innerText</b>라는 속성에 접근
+    </div>
+
+    <button onclick="tagValue();">확인</button>
+    <!--확인을 누르면 script에 있는 function tagValue()를 찾아서 실행-->
+
+    <script>
+        function tagValue(){
+            //위의 div 요소를 가져와서 그 안의 값을 확인/변경
+
+            //div요소객체를 가져와서 변수에 저장 - id가 area1인 모든걸 가져옴
+            var divE1 = document.getElementById("area1");
+            //element(요소) 중 id가 area1인걸 찾아서(get) divE1 변수에 넣음.
+            //divE1의 log를 출력하거나, 디렉토리 구조와 속성을 불러올 수 있음
+
+            console.log(divE1);
+        //창에서 tagValue가 실행되게 클릭해보면 divE1에 들어간 값을 console.log에서 확인 가능
+            console.dir(divE1); //해당 값에 대한 directory 구조 값을 보여줌(속성 정보도 포함)
+
+            //선택된 요소의 속성에 접근 가능('.'통해서)
+            console.log(divE1.id); // id: 해당 요소의 id 속성 값
+            console.log(divE1.className); // classname:해당 요소의  class 속성 값
+
+            console.log(divE1.innerHTML); // innerHTML:요소의 content영역 안의 html태그까지 모두 보여줌
+            console.log(divE1.innerText); // innerText:요소의 content영역 안의 text만 포함
+
+            //해당 요소의 속성값 변경도 가능 : 속성에 접근한 후 대입을 통해서 변경
+            divE1.innerHTML = "<b>innerHTML로 속성값 변경함</b>"
+            divE1.style.backgroundColor="red";
+            // 배경 색 red로 바뀌고, 글 내용도 'innerHTML로 속성값 변경함'으로 바뀜
+
+            // divE1.innerText = "<h2>innerText로 속성값 변경함</h2>"
+            // divE1.style.color="red";
+            // innerText를 사용하면 내용에 작성한 태그가 적용되지 않고 문자 그대로 출력됨
+
+            // innerHTML은 태그를 해석하여 태그 형태로 보여주고
+            // innerText는 무조건 문자로 인식해서 출력함(태그 인식 안함)
+        }
+    </script>
+
+    <hr>
+    <h2>2. 데이터 입력받는 구문(변수에 기록 가능)</h2>
+    <p>
+        1) 변수 = [window.]confirm("질문내용");<br>
+        2) 변수 = [window.]prompt("질문내용");<br>
+        3) 변수 = 선택한요소.속성(id, className, innerHTML, innerText, ...)<br>
+        4) 변수 = 선택한 input요소.value;
+    </p>
+
+    <h3>1) [window.]confirm("질문내용");</h3>
+    <p>
+        confirm 호출시 "질문내용"과 "확인/취소"버튼이 존재하는 알림창 발생<br>
+        확인 버튼 클릭시 true, 취소 버튼 틀릭시 false를 반환
+    </p>
+
+    <button onclick="testConfirm();">클릭</button>
+    <div id="area2"></div> <!--div안에 testConfirm()이 클릭됐을 때 문구를 표시할 것-->
+
+    <script>
+        function testConfirm(){
+            var result = confirm("배고프면 확인, 아니면 취소를 누르세요");
+            //console.log(result); result값 나오는지 확인 - true, false로 나옴
+
+            if(result){
+                console.log("너무너무 배고파요. 밥주세요."); //true 값 때 출력
+            }else{
+                console.log("배고픈게 뭔가요. 하나도 안고파요"); // false 값 때 출력
+            }
+
+            var divE2 = document.getElementById("area2");
+            //dirE2에 area2 div객체 전체가 들어옴.
+
+            if(result){
+                divE2.innerHTML = "<h3>너무너무 배고파요</h3>";
+            }else{
+                divE2.innerHTML = "<h3>배고픈게 뭔가요? 하나도 안고파요</h3>";
+            }
+        }
+    </script>
+
+    <br>
+    <h3>2) [window.]prompt("질문내용");</h3>
+    <p>
+        prompt호출시 "질문내용"과 입력할 수 있는 "텍스트 상자"와 "확인/취소" 버튼이 
+        확인 버튼 클릭시 텍스트상자에 입력한 값이 문자열로 반환<br>
+        취소 버튼 클릭시 null반환
+    </p>
+
+    <button onclick="testPrompt();">클릭</button>
+    <div id="area3"></div>
+
+    <script>
+        function testPrompt(){
+            var name = prompt("이름을 입력하세요");
+            var age = prompt("나이는 몇살입니까?");
+            
+            console.log(name);
+            console.log(age);
+            //prompt창에서 입력한 name, age값이 console창에 뜸
+
+            var divE3 = document.getElementById("area3"); // area3을 찾아서 divE3에 넣음
+            divE3.innerHTML = "당신의 이름은 <b>" + name + "</b> 나이는 <b>"+ age + "</b>살 이군요";
+        }
+    </script>
+
+    <button onclick="testPrompt2();"> 숫자입력</button>
+    <ul id="area4"> <!--li가 없어서 출력되지 않는 상황-->
+
+    </ul>
+    <script>
+        function testPrompt2(){
+            var num = prompt("숫자만 입력하세요");
+            /*
+                자바 
+                for(int=1; i<10;,i++){
+
+                }
+            */
+            /*
+            이렇게 작성하면, 맨 마지막 목록만 보여짐.
+            num값에 5가 들어갔다면 1~5까지 출력되는 게 아니라, 목록5만 출력됨
+            var a = document.getElementById("area4"); //area4를 찾아서 a라는 변수에 넣음
+            for(var i=1; i<=num; i++){
+                a.innerHTML = "<li>목록"+ i + "</li>";
+            }
+            */
+
+            var str = "";
+            for(var i=1; i<=num; i++){
+                str += "<li>목록" + i + "</li>";
+            }
+            console.log(str);
+            document.getElementById("area4").innerHTML = str;
+            /*
+                document.getElementById("area4") : id가 area4인 요소를 찾음,
+                .innerHTML : 가져온 요소의 내부 HTML컨텐츠에 접근. 요소를 읽거나 변경 가능
+                = str; : '='의 오른쪽에 있는 str변수(또는 값)을 해당요소의 내부 html로 설정함.
+                         area4 id를 가진 요소의 내용이 str값으로 대체됨
+            */
+        }
+    </script>
+
+    <h3>4) 선택한 input요소.value;</h3> <!--사용자가 넣은 값이 들어옴-->
+    아이디 : <input type="text" id="userId"><br>
+    비밀번호 : <input type="password" id="userPwd"><br>
+
+    <button onclick="testInput();">로그인</button>
+    <input id="area5">
+
+    <script>
+        function testInput(){
+            var input1 = document.getElementById("userId");
+            var input2 = document.getElementById("userPwd");
+
+            console.dir(input1); // input에 있는 속성 값들을 알 수 있음
+
+            var id = input1.value;
+            var pwd = input2.value;
+
+            document.getElementById("area5").value = id + ", " + pwd;
+            //value에 들어간게 area5자리에 보이게 됨
+        }
+    </script>
+</body>
+</html>
