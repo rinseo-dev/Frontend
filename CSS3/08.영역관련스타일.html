@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08.영역관련스타일</title>
+    <link href="resources/css/08.style.css" rel="stylesheet">
+</head>
+<body>
+    <h1>여백 및 간격 관련 스타일</h1>
+
+    <h2>요소 영역 == content(내용) + padding(안쪽 여백) + border(테두리)</h2>
+    <!--요소 영역이란, 내용, 안쪽 여백, 테두리를 모두 포함한 것 -->
+
+    <h4>div</h4>
+    <div class="test">기준 div</div>
+
+    <h3>padding</h3>
+    <p>내용영역(content)와 테두리영역(border)사이의05 거리(여백)을 조절하는 스타일</p>
+
+    <!-- (div.test#test${컨텐츠 영역})*3 -->
+    <div class="test" id="test1">컨텐츠 영역</div><br>
+    <div class="test" id="test2">컨텐츠 영역</div><br>
+    <div class="test" id="test3">컨텐츠 영역</div>
+    <!--
+        **실제 컨텐츠 영역은 가운데에 네모낳게 몰려있음. 그 주변에 padding이 적용되는 것
+        [padding=20px]컨텐츠[    padding=70px;     ]이런식
+    -->
+
+    <h3>margin</h3>
+    <p>타 요소들 간의 간격을 조정할 때 사용</p>
+    <div class="test" id="test4">컨텐츠 영역</div> <!--컨텐츠영역 바깥에 margin=50px-->
+    <div class="test" id="test5">컨텐츠 영역</div>
+    <div class="test" id="test6">컨텐츠 영역</div>
+</body>
+</html>

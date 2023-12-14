@@ -1,0 +1,74 @@
+div{
+    width:90px;
+    height:90px;
+    border-width:3px;
+    margin:10px;
+    padding:10px;
+}
+
+#test1{
+    border-style:dotted;
+    /* border-bottom-style:dotted; 이렇게 하면 바닥에만 적용*/
+    border-top-width:10px; /*윗쪽만 두껍게*/
+}
+
+#test2{
+    box-shadow:5px 5px 10px 5px gray;
+}
+
+#test3{
+    border-style:dashed double solid dotted; /*시계 방향으로 다 다른 적용*/
+    border-width:5px;
+}
+
+#test4{
+    border-style:dashed;
+    border-left-color:red;
+}
+
+#test5{
+    border-style:groove;
+    border-width:10px;
+}
+
+#test6{
+    border-style:ridge;
+    border-width:10px;
+}
+
+#test7{
+    border-style:inset;
+    border-width:10px;
+}
+
+#test8{
+    border-style:outset;
+    border-width:10px;
+}
+
+#test9{
+    border-style:solid;
+    /* border-radius:20px; */ /*전체 각 둥글게*/
+    border-top-left-radius:50px;
+    border-bottom-right-radius: 50px;
+    background-color: aquamarine;
+}
+
+#test10{
+    border: 10px dotted pink;
+}
+
+#btn:hover{
+    background-color: blueviolet;
+}
+
+#inputBtn{
+    border:none;
+    padding:10px 20px;
+    border-radius:10px;
+    background-color: coral;
+}
+
+#inputBtn:hover{
+    background-color: darkkhaki;
+}

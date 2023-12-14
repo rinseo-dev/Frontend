@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07.목록관련스타일</title>
+    <style>
+        #ul1{
+            list-style-type: disc;
+            list-style-type: square;
+            list-style-type: none;
+            list-style-image : url(resources/img/icon1.png);
+        }
+
+        #ol1{
+            list-style-type: decimal-leading-zero; /* 숫자 앞에 '0'이 붙음 */
+            list-style-type: upper-alpha; /* 대문자 알파벳으로 순서 */
+            list-style-type: lower-roman; /* 로마숫자 소문자로 순서 */
+            list-style-type: lower-greek; /* 알파,베타, 감마 순 */
+            list-style-position: inside; /* 기본값 : outside */
+        }
+    </style>
+</head>
+<body>
+    <h1>목록 관련 스타일(list~)</h1>
+
+    <h3>list-style-type : 불릿기호를 변경시켜줄 때 사용</h3>
+    <h3>list-style-image:url(주소) : 불릿기호를 이미지로 적용할 때 사용</h3>
+    <h3>list-style-position : 불릿기호의 위치를 조정할 때 사용 / 기본값 : outside </h3>
+    <pre>
+        * 순서 없는 목록(ul)
+        선택자 { 
+            list-style-type : disc | circle | square | none;
+        }
+
+        * 순서 있는 목록(ol)
+        선택자{
+            list-style-type : decimal | decimal-leading-zero;
+            list-style-type : lower-alpha | upper-alpha;
+            list-style-type : lower-roman | upper-roman;
+            list-style-type : lower-greek;         
+        }
+
+        ** 여러가지가 더 있음.
+    </pre>
+
+    <!-- (h4+ul>li*4)*2 -->
+    <h4>순서 없는 list</h4>
+    <ul id="ul1">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JAVASCRIPT</li>
+        <li>JQUERY</li>
+    </ul>
+
+    <h4>순서 있는 list</h4>
+    <ol id="ol1">
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JAVASCRIPT</li>
+        <li>JQUERY</li>
+    </ol>
+    
+</body>
+</html>

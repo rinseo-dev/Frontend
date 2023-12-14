@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.선택자우선순위</title>
+    <style>
+        h1{background-color: pink; color:yellow;}
+        h1{background-color: red;}
+        #id1{background-color: cadetblue;}
+        .class1{background-color: chartreuse; color:white;}
+        div{background-color: darkgoldenrod !important;
+            color:black; 
+            width:200px;
+            height:200px; 
+        }
+        /* 사이즈 설정은 div에서 처음 나온거라 우선순위 문제 없이 바로 적용 가능*/
+        /* 태그(div)보다 클래스(.class1)가 우선순위가 높아서 적용 X여아 하지만
+           세미콜론';'안쪽에 !important를 넣어주면 우선순위가 최상위가 돼서 바로 적용됨*/
+    </style>
+</head>
+<body> 
+    <h1>선택자 우선순위</h1>
+    <p>
+        기본적으로 css는 위에서부터 아래로 적용됨<br>
+        동일한 요소를 다양한 선택자로 css가 부여된 경우, 우선순위에 따라 적용됨<br>
+        !important -> 인라인스타일방식 -> 아이디선택자 -> 클래스선택자 -> 태그선택자
+    </p>
+
+    <div id="id1" class="class1" >우선순위 테스트</div>style="background-color:plum";
+    <!--
+        현재는 가장 우선순위가 높은 important가 정의된 div{}의 bg-color가 적용됨
+        important가 있는 div{} 주석처리하면 인라인태그인 bg-color:plum이 먹히고,
+        인라인태그도 지우면 #id1{}이 적용됨. id도 주석처리하면 .class1{}이 적용됨
+    -->
+</body>
+</html>

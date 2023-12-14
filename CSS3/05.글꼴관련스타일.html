@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05.글꼴관련스타일</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bagel+Fat+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Vina+Sans&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <h1>글꼴관련 스타일 속성(font~)</h1>
+
+    <h3>font-family : 글꼴을 지정할 때 사용</h3>
+    <pre>
+        선택 { font-family:글꼴명; }
+        
+        ** {font-family: A폰트, B폰트, C폰트, ...}
+            글꼴은 ','를 넣어서 설정할 수 있다. 이 경우 A폰트가 없으면 B, B도 없으면 C가 적용되며
+            설정한 폰트가 모두 없을 경우 기본값으로 정의된 폰트로 설정된다
+    </pre>
+
+    <!-- p#ff${글꼴테스트$}*3로 생성 -->
+    <p id="ff1">글꼴테스트1</p>
+    <p id="ff2">글꼴테스트2</p>
+    <p id="ff3">글꼴테스트3</p>
+
+    <!---------------------- style ---------------------->
+    <style>
+        #ff1{font-family: "배달의민족 을지로체 TTF"; font-size:30px;}
+        #ff2{font-family: 이폰트가없으면,이폰트도없으면, 제주한라산; font-size:30px;}
+        #ff3{font-family: 제주고딕; font-size:30px;}
+        /*폰트가 없거나 유실됐을 경우를 대비해서 ','로 예비 폰트를 넣어줘도 됨.*/
+    </style>
+
+    <hr>
+
+    <h3>* 외부 웹 폰트 사용하기</h3>
+    <p>
+        웹 폰트 제공 사이트 :
+        <a hred="https://fonts.google.com/" target="_blank">구글 웹 폰트</a>
+    </p>
+    <pre>선택 { font-family:글꼴명;}</pre>
+    <p id="ff4">글꼴테스트4</p>
+    <p id="ff5">글꼴테스트5</p>
+
+    <p id="ff6">Lorem ipsum dolor sit amet.</p>
+    <p id="ff7">Lorem ipsum dolor sit amet.</p>
+    <!-- (p#ff$lorem5)*2 이래도 안되네.. -->
+
+    <!---------------------- style ---------------------->
+    <style>
+        #ff4{font-family: "Black Han Sans"; font-size:30px;}
+        #ff5{font-family: "Bagel Fat One"; font-size:30px;}
+        #ff6{font-family: "Kanit"; font-size:30px;}
+        #ff7{font-family: "Vina Sans"; font-size:30px;}        
+    </style>
+
+    <hr>
+    <h3>font-size : 글꼴의 크기를 변경할 때 사용</h3>
+    <pre>
+        선택자 { font-size:크기( px | em | rem | % ) }
+
+        ** px : 고정된 크기 / em : 상위 글꼴 크기 기준 / rem : 최상위 글꼴 크기 기준
+            px, rem이 많이 사용된다고 함
+    </pre>
+
+    <!--ul>li#fs$*3로 생성-->
+    <ul>
+        <li id="fs1">고정크기 px테스트</li>
+        <li id="fs2">가변크기 em</li>
+        <li id="fs3">가변크기 %</li>
+    </ul>
+    <!---------------------- style ---------------------->
+    <style>
+        #fs1{font-size:30px;} /*절대크기:기본지정된 크기*/
+        #fs2{font-size:1.5em;}/*상대크기:부모크기 기준으로 1em=100%*/
+        #fs3{font-size:200%}/*상대크기:기본 설정된 크기에서 상대적 크기 설정*/
+    </style>
+
+    <hr>
+    <h3>font-wieght : 글꼴의 두께 지정</h3>
+    <pre>
+        선택자{
+            font-weight : normal | bold | bolder | lighter | 100 | 400 | 900;
+        }
+    </pre>
+
+    <ul>
+        <li>원래 굵기</li>
+        <li id="fw1">굵은 글꼴로 변경</li>
+        <li id="fw2">원래 굵기보다 더 굵게</li>
+        <li id="fw3">원래 굵기보다 더 가늘게</li>
+    </ul>
+    <!---------------------- style ---------------------->
+    <style>
+        #fw1{font-weight: bold;}/* 700 */
+        #fw2{font-weight: 900;}
+        #fw3{font-weight: 100;}/* lighter - 근데 티 안남*/
+    </style>
+
+    <h3>font-varient : 영문텍스트 문구를 작은 대문자로 변경할 때 사용</h3>
+    <pre>선택자{ font-variant : small-caps; }</pre>
+    <p>I LOVE YOU<span style="font-variant:small-caps;">i love you</span></p>
+
+    <hr>
+    <h3>font-style : 텍스트 문구를 기울이고자 할 때</h3>
+    <pre>선택자{font-style: normal | italic | oblique; }</pre>
+
+    <p style="font-style:italic">Lorem ipsum dolor sit amet.(필기체의 기울임꼴)</p>
+    <p style="font-style:oblique">Lorem ipsum dolor sit amet.(원래 글자의 기울임꼴)</p>
+</body>
+</html>

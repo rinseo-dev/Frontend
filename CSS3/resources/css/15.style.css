@@ -1,0 +1,22 @@
+ul{
+    list-style-type: none;
+    padding:0;
+    border: 2px solid;
+    height: 50vh;
+
+    display:flex;
+    /* justify-content: left; */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+}
+
+li{
+    width:100px;
+    height:100px;
+    background-color: darkgrey;
+    border:2px solid;
+    margin:5px;
+    text-align:center;
+    line-height:100px; /*전체 높이만큼 line-height값을 주면 가운데 정렬됨*/
+}

@@ -1,0 +1,48 @@
+.positioning{border:1px solid;}
+.ye{background: yellow;}
+.yg{background: yellowgreen;}
+.red{background: red;}
+
+.outer{position:relative;}
+
+#first{
+    width:300px;
+    height:300px;
+}
+
+#second{
+    width:200px;
+    height:200px;
+    position:absolute;
+    top:50px;
+    left:50px;
+    /*outer의 relative를 기준으로 top, left에서 50만큼 떨어진 위치*/
+}
+/*상위 포지션 relative가 어딘지 확인하고, 그걸 기준으로 absolute가 들어감
+  relative가 없는 경우 body를 기준으로 들어감*/
+
+#third{
+    width:100px;
+    height:100px;
+    position:absolute;
+    top:100px;
+    left:100px;
+}
+/*상위 포지션의 relative가 기준이므로, outer가 기준이 됨.*/
+
+#fixed-area{
+    width:100px;
+    height:100px;
+    /* position:fixed; */
+    /* 화면에서 위치가 고정됨. <br>을 넣어서 공간을 줘도 fixed된 위치에 고정되어있음 */
+}
+
+.float-test{
+    width:50px;
+    height:50px;
+    border:1px solid;
+    /* display:inline-block; */
+    /* float:left; */ /*[요소1][2][3][4][5] 순으로 왼쪽에 붙어서 정렬*/
+    float:right;/*[요소5][4][3][2][1]순으로 오른쪽에 붙어서 정렬됨*/
+}
+/*inline-block으로 정렬하면요소 사이에 공간이 생김. float로 쌓으면 비는 공간 없음*/

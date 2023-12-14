@@ -1,0 +1,91 @@
+/*전체*/
+body{
+    width:1000px;
+    /* background: azure; common으로 옮김*/
+}
+
+/*헤더*/
+header{
+    height:300px;
+}
+
+#logo{
+    float:left;
+}
+
+#login{
+    float:right;
+    margin-top:6px;
+}
+
+#titleImg{
+    clear:both;
+    height:262px; /*nav 사이에 빈칸 없애려고 2px늘려줌*/
+    width:100%;
+}
+
+/*nav*/
+.navi{
+    /* width:100%; */
+    width:1000px;
+    height:60px;
+    background-color:lightskyblue;
+}
+
+.navi>a{
+    display:inline-block;
+    width:246px;
+    line-height: 60px;
+    text-align: center;
+}/*navi 클래스 바로 아래 a태그*/
+
+.navi>a:hover{
+    color:white;
+}
+
+.navi>a:active{
+    color:blue;
+}
+
+/*본문*/
+/* section{
+    margin-top:10px;
+    height:500px;
+    width:70%;
+    line-height: 40px;
+} 쌤이 하려고 했던 방향이 이게 아니라서 다시 ㅎ*/
+section{
+    margin-top:10px;
+    height:500px;
+    width:500px;
+    line-height: 40px;
+
+    float:left;
+}
+
+/* article>h4{color:rgb(0, 183, 255);} 이건 내거, 아래는 쌤*/
+article h4{color:rgb(0, 183, 255);}
+
+
+aside{
+    display:block;
+    justify-content: center;
+
+    float:right;
+    width:300px;
+}
+
+aside>img{width:300px; border-radius: 5%;}
+
+footer{
+    clear:both;
+    background: lightskyblue;
+    height:150px;
+    line-height: 45px;
+    padding-left:25px;
+    padding-top:10px;
+}
+
+footer>p{
+    color:white;
+}
