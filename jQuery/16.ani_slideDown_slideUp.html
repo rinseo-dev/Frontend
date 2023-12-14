@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <title>16.ani_slideDown_slideUp</title>
+  <style>
+    div{
+      border:1px solid darkgreen;
+      border-radius:10px;
+      background-color:rgb(210, 255, 210);
+      width:300px;
+      height:30px;
+      cursor:pointer;
+      padding-left:10px;
+    }
+    span{
+      border:1px solid black;
+      border-radius:10px;
+      width:300px;
+      height:30px;
+      cursor:pointer;
+      padding-left:10px;
+      margin:10px 0px;
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <h3>* slideDown(), slideUp()</h3>
+  <p>요소를 펼쳐서 보여주고, 접어서 안보이게 함</p>
+
+  <!-- (div{Q.}+span{A.})*5 -->
+  <div>Q. 질문입니다</div>
+  <span>A. 답변입니다</span>
+
+  <div>Q. 점심시간은 언제입니까?</div>
+  <span>A. 12시20분~13시10분 까지 입니다</span>
+
+  <div>Q. 종료시간은 언제입니까?</div>
+  <span>A. 18시 00분 입니다</span>
+
+  <div>Q. 평가날짜는 언제입니까?</div>
+  <span>A. 2024년 1월 중순 쯤입니다</span>
+
+  <div>Q. 강의 실은 어디입니까?</div>
+  <span>A. 제 3 강의장 입니다</span>
+
+  <script>
+    $(()=>{
+      $('div').click(function(){
+        const p = $(this).next(); // .next()바로 뒤에 나오는 요소 하나를 span에 저장함
+        // $('div').click(function(){ $(this).next();}div를 클릭 했을 때, 바로 뒤에 나오는 요소 하나에 적용됨. 
+        if(p.css('display')=='none'){ // p값이 숨겨져있는 상태라면,
+          p.slideDown();
+        }else{ // p값이 펼쳐져있는 상태라면
+          p.slideUp();
+        }
+      })
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <!--jQuery ui를 사용하기 위해서 cdn을 하나 추가함-->
+  <title>17.ani_nav</title>
+  <style>
+    /*깃허브*/
+    a{
+      display:inline-block;
+      text-decoration:none;
+      color:black;
+      background-color: #dc143c;
+      width:200px;
+      height:60px;
+      text-align:center;
+      font:bold 20px arial;
+      line-height:60px;
+    }
+    li{
+      list-style:none;
+      float:left;
+      width:200px;
+      height:60px;
+      line-height:60px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ul>(li>a)*4 -->
+  <ul>
+    <li><a href="#" data-bg="#DAFFFF">Home</a></li>
+    <li><a href="#" data-bg="#80F5FF">About</a></li>
+    <li><a href="#" data-bg="#5CD1E5">Portfolio</a></li>
+    <li><a href="#" data-bg="#269BAF">Content</a></li>
+  </ul>
+  <script>
+    $(()=>{
+      $('li a').hover(function(){
+        let overColor = $(this).attr('data-bg'); // overColor에는 각 data-bg의 값이 들어있음
+        console.log(overColor);
+        $(this).stop()
+               .animate({'background-color':overColor,
+                          color:'white'},100); // {:}를 사용해서 객체로 표현
+      },function(){ // 객체 안에 key는 특수기호나 공백이 있으면 따옴표로 표시
+        $(this).stop().animate({'background-color':'#dc143c',color:'black'},100);
+      })
+      //$(this)에 stop(), animate() 총 2개를 적용함
+
+      // animate()는 동작마다 queue에 쌓임 그걸 모두 진행할때까지 계속됨
+      // stop()을 걸어주면 이벤트 진행 동작이 끝나면 queue에 쌓인걸 무시하고 종료됨
+    })
+  </script>
+</body>
+</html>

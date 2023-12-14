@@ -181,5 +181,19 @@
       })
     })
   </script>
+
+  <h3>- 동적으로 글자수 세기</h3>
+  
+  150자 내외로 작성하시오<br>
+  <textarea cols="30" rows="10" id="content"></textarea><br>
+  <span id="count">0</span>/150
+
+  <script>
+    $(()=>{
+      $('#content').keyup(function(){
+        $('#count').text($(this).val().length); // .val()로 값을 가져와서 .length길이를 찾음
+      })
+    })
+  </script>
 </body>
 </html>
