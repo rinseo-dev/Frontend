@@ -82,7 +82,7 @@
     // }
 
     $('ul li').click(function(){
-      var idx = $(this).index() + 1;
+    var idx = $(this).index() + 1;
       console.log(idx);
       $("ul li").removeClass("on");
       $(this).addClass("on");
@@ -91,6 +91,7 @@
       $(".con_box"+idx).addClass("on");
       
     });
+
   });
 </script>
 </body>
