@@ -1,6 +1,6 @@
 
 *{
-  margin: 0;
+  margin:0 auto;
   padding:0;
   box-sizing: border-box;
 }
@@ -24,23 +24,23 @@ header{
   padding:0px;
 } */
 
-nav>ul{
+nav>ul{  
   display:flex;
   justify-content: space-between;
   list-style: none;
 }
 
 nav>ul>li{
-  position:relative;
+  position:relative; /*ralative를 기준으로 해야 아래에 오는 자식 위치선정을 absolute로 할 수 있음*/
   width:150px;
   text-align: center;
 }
 
 .submenu{
   display:none;
-  position:absolute;
+  position:absolute; /*부모인 상위 li에 relative를 넣어서 여기서 absolute를 적용하면 됨*/
   top:20px;
-  right:2px;
+  right:30px;
   text-align: center;
 }
 

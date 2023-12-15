@@ -40,9 +40,9 @@
         <section id="imgslide">
             <div>
                 <img src="resources/img/slide1.jpg" alt="여행사진1">
-                <!-- <img src="resources/img/slide2.jpg" alt="여행사진2">
+                <img src="resources/img/slide2.jpg" alt="여행사진2">
                 <img src="resources/img/slide3.jpg" alt="여행사진3">
-                <img src="resources/img/slide1.jpg" alt="여행사진1"> -->
+                <img src="resources/img/slide1.jpg" alt="여행사진1">
             </div>
         </section>
 
@@ -116,6 +116,8 @@
 
       <script>
         $(()=>{
+          /*
+          이건 클릭
           $('.nav>li').click(function(){
             const li = $(this).find('.submenu');
             if(li.css('display')=='none'){
@@ -124,7 +126,43 @@
               li.slideUp();
             }
           })
-        })
+          */
+        
+          /*
+          마우스 오버로 내려오게 하기 - 선생님답
+          $('.nav>li').mouseover(function(){
+            $(this).children('.submenu').stop().slideDown();
+          });
+          
+          $('.nav>li').mouseout(function(){
+            $(this).children('.submenu').stop().slideUp();
+          });
+          */
+
+          // nav 아무곳에나 마우스 오버하면 네비 전체 내려오기
+          $('nav').mouseover(function(){
+            $('.submenu').stop().slideDown();
+          });
+
+          $('nav').mouseout(function(){
+            $('.submenu').stop().slideUp();
+          })
+
+        // img slide - 선생님 css랑 같이 있어야됨.
+        /*
+          let x =$('#imgslide>div')
+          setInterval(function(){
+            if(x.position().left == -2000){
+              x.animate({left: '-=1000px'},function(){
+                x.css('left',0);
+              });
+            }else{
+              x.animate({left:'-=1000px'});
+            }
+          },2000);
+          */
+        });
+
       </script>
 </body>
 </html>
