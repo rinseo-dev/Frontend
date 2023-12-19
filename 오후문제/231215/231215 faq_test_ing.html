@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> 
+    <title>Document</title>
+    <style>
+        .a {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>slide1</h2>
+        <ul class="slide1">
+            <li class="q">q</li>
+            <li class="a">a</li>
+            <li class="q">q</li>
+            <li class="a">a</li>
+            <li class="q">q</li>
+            <li class="a">a</li>
+            <li class="q">q</li>
+            <li class="a">a</li>
+            <li class="q">q</li>
+            <li class="a">a</li>
+        </ul>
+        <h2>slide2</h2>
+        <ul class="slide2">
+            <li class="q">q
+                <div class="a">a</div>
+            </li>
+            <li class="q">q
+                <div class="a">a</div>
+            </li>
+            <li class="q">q
+                <div class="a">a</div>
+            </li>
+            <li class="q">q
+                <div class="a">a</div>
+            </li>
+            <li class="q">q
+                <div class="a">a</div>
+            </li>
+            <li class="q">q
+                <div class="a">a</div>
+            </li>
+            <li class="q">q
+                <div class="a">a</div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+      $(()=>{
+        $('.slide1>.q').click(function(){
+          const a = $(this).next();
+          if(a.css('display') == 'none'){
+            a.slideDown();
+          }else{
+            a.slideUp();
+          }
+        })
+
+        $('.slide2>.q').click(function(){
+          const b = $(this).children();
+          if(b.css('display')=='none'){
+            b.slideDown();
+          }else{
+            b.slideUp();
+          }
+        })
+      })
+    </script>
+</body>
+</html>

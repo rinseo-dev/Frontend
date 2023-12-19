@@ -185,8 +185,9 @@
         */
        // 3차
         $(".btn > button").click(function(){
-            const button = $(this).text();
-            //console.log(button);
+            const button = $(this).text(); 
+            const button2 = $(this).attr("class"); 
+            console.log(button2);
             $('.each1 tr').addClass('btn')
                 .each(function(){
                     $(this).children().each(function(index,el){
@@ -203,14 +204,20 @@
       //2번
         $(".each2P_btn").click(function(){
             let arr = ["사과","배","딸기","포도","귤"];
-            // $('.each2 p').each(function(index,el){
-            //   // console.log(index);
-            //   $('p'+index).text(`${el}`);
-            // });
+            /*
+            1차
+            $('.each2 p').each(function(index,el){
+              // console.log(index);
+              $('p'+index).text(`${el}`);
+            });
+            */
             
-            // $.each(arr, function(index, el){
-            //     console.log(index,el);
-            // });
+            /*
+            2차
+            $.each(arr, function(index, el){
+                console.log(index,el);
+            });
+            */
 
             let indexno = 0;
             $('.each2 p').each(function(index){

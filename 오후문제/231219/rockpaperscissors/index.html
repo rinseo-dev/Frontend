@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <title>가위 바위 보</title>
+</head>
+<body>
+
+<div class="gamerule">
+    <h2>GAME RULE ! <span class="ex">X</span></h2>
+    <div class="popupimg"><img src="/img/popupimg.png" class="animate__animated animate__repeat-3 animate__bounce" alt="가위바위보이미지"></div>
+    <p>1. 게임이 시작 되면 가위,바위,보 중 하나를 선택합니다.</p>
+    <p>2. 선택된 순간 랜덤으로 컴퓨터에서 가위,바위,보 중 하나가 선택됩니다.</p>
+    <p>3. 알림창이 뜨고 reloading 합니다.</p>
+</div>
+<div class="gamefinish">
+    <h3>결과</h3>
+    <div class="result_win">USER WIN!!</div>
+    <div class="finish_con">
+        <div><b>PC</b> : <span class="pc"></span></div>
+        <div><b>USER</b> : <span class="user"></span></div>
+        <div><b>DRAW</b> : <span class="draw"></span></div>
+        <div><b>TOTAL</b> : <span class="total"></span></div>
+    </div>
+    <div class="finish_btn">
+        <a href="javascript:void(0);" class="restart">RESTART</a>
+        <a href="" class="finish">FINISH</a>
+    </div>
+</div>
+<div class="wrap">
+    <div class="con">
+        <h1><span class="green">가위</span> <span class="red">바위</span> <span class="yellow">보</span></h1>
+        <div class="slidedown">
+            <div class="result">
+                <div><b>PC</b> : <span class="pc"></span></div>
+                <div><b>USER</b> : <span class="user"></span></div>
+                <div><b>DRAW</b> : <span class="draw"></span></div>
+            </div>
+            <div class="mainimg">
+                <img src="/img/img1.png" alt="">
+            </div>
+            <div class="btn">
+                <button type="button" class="scissors">가위</button>
+                <button type="button" class="rock">바위</button>
+                <button type="button" class="paper">보</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        let imgchange;
+        $(".gamerule .ex").click(function(){
+            $(".gamerule").hide();
+            $("h1").addClass("on animate__rubberBand animate__animated");
+            $(".slidedown").slideDown(500);
+        });
+
+//setinterval() 씀 -> 버튼을 누르면 clearinterval() -> clearInterval(intervalID)
+/*
+  setInterval(콜백함수,시간) 시간(ms)을 간격으로 콜백함수를 반복 호출함
+  var img = setinterval(radom,300); // 함수를 따로 뺐을때
+  var img = setinterval(function(){
+  },300); // 한번에 함수로 적을때
+
+  return값으로 interval을 식별하는 intervalId를 갖는다면
+  clearInterval()로 고유 intervalId를 제거해서 호출 중단
+  ** 이미지가 가위,바위,보 돌고 있을 때 내가 선택한 시점에 멈춰야됨
+
+  그럼 선택하기 전까진 interval이 진행되고 클릭했을 때 clearinterval이 되면 사진이 멈추나?
+*/
+    });
+
+
+
+</script>
+</body>
+</html>
