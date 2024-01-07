@@ -86,22 +86,83 @@ $(function(){
 	// imgs.forEach(imgs => {
 	// 	console.log(imgs);
 	// });
+    
+    let imgidx = 0;
+    let imgWin = 0;
+    let btnWin = 0;
 
 	let itvVal = setInterval(() => {
 		// $('mainimg > img').attr("src","/img/img"+i+".png");
 
-		let test = imgs.forEach(imgs=>{
-		});
-		$('mainimg > img').attr("src",test);
+		console.log(imgidx);
 
-		
-	}, 300);
+        let imgSrc ="/img/img"+imgs[imgidx]+".png";
+        console.log(imgSrc);
+        
+        $('.mainimg img').attr("src","/img/img"+imgs[imgidx]+".png");
 
+        imgidx++;
+
+        if(imgidx===imgs.length){
+            imgidx = 0;
+        }
+	},500);
+
+    /*
 	$('button').click(function(){
-		clearInterval(itvVal);
-	})
-	
+        let btnidx = $(this).index();
+        console.log(btnidx);
 
+        // btn이김
+        if(imgidx==1 && btnidx==2 || imgidx==2 && btnidx==0 || imgidx==3 && btnidx==1){
+            
+            btnWin += 10;
+            console.log("btn"+btnWin);
+            console.log("img"+imgidx);
+        // img이김
+        }else if(imgidx==1 && btnidx==2 || imgidx==2 && btnidx==1 || imgidx==3 && btnidx==2){
+            imgWin += 10;
+            console.log("img"+imgWin);
+        }else{
+            $('.draw').html("<b>DRAW</b>");
+        }
+
+		clearInterval(itvVal);
+	})*/
+
+    
+    
+ 
+ 
+    $('button').click(function(){
+        let btnidx = $(this).index();
+        console.log(btnidx);
+
+        // btn이김
+        if(imgidx==1 && btnidx==2 || imgidx==2 && btnidx==0 || imgidx==3 && btnidx==1){
+            
+            btnWin += 10;
+            console.log("btn"+btnWin);
+            console.log("img"+imgidx);
+            $('.user').html("<b>"+btnWin+"</b>");
+            $('.draw').html("");
+        // img이김
+        }else if(imgidx==1 && btnidx==2 || imgidx==2 && btnidx==1 || imgidx==3 && btnidx==2){
+            
+            imgWin += 10;
+            console.log("img"+imgWin);
+            $('.pc').html("<b>"+imgWin+"</b>");
+            $('.draw').html("");
+        }else{
+            $('.draw').html("<b>DRAW</b>");
+            console.log("draw");
+        }	
+
+        if(btnWin==50 || imgWin==50){
+        clearInterval(itvVal);
+        }
+	})
+    
 });
 </script>
 </body>
